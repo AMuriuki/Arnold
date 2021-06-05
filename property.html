@@ -43,10 +43,11 @@
         integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 </head>
 <style>
-    .float-left{
+    .float-left {
         float: left !important;
     }
 </style>
+
 <body class="property-template-default single single-property postid-7199505 propertyhive propertyhive-page">
     <header class="header">
         <div class='header--top-bar'>
@@ -322,7 +323,7 @@
 
     <main>
         <div class="flex image-container">
-            <a href="../../properties/page/4/index.html" class="back-to-results"><i class="fas fa-arrow-left"></i> Back
+            <a href="properties.html" class="back-to-results"><i class="fas fa-arrow-left"></i> Back
                 to Results</a>
 
 
@@ -349,7 +350,7 @@
 
                 <a href='https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg'
                     data-fancybox='images-preview' class='property-link__img-no' data-thumbs='{' autoStart':true}'><i
-                        class='fas fa-camera'></i> View Photos <span>(6)</span></a>                
+                        class='fas fa-camera'></i> View Photos <span>(6)</span></a>
             </div>
 
 
@@ -404,9 +405,9 @@
                         <div class="single-property--tab-content">
                             <ul class="single-property__tabs">
                                 <li class="tab tab--active" data-tab="tab-1">Overview</li>
-                                <li class="tab" data-tab="tab-2">Floorplans</li>
-                                <li class="tab" data-tab="tab-3">Map</li>
-                                <li class="tab" data-tab="tab-4">Virtual Tour</li>
+                                <!-- <li class="tab" data-tab="tab-2">Floorplans</li> -->
+                                <li class="tab" data-tab="tab-2">Map</li>
+                                <li class="tab" data-tab="tab-4">Video</li>
                             </ul>
                             <div id="tab-1" class="tab-content tab-content--active">
                                 <div class="tab-content__section">
@@ -463,7 +464,7 @@
 
                                 </div>
                             </div>
-                            <div id="tab-2" class="tab-content">
+                            <!-- <div id="tab-2" class="tab-content">
                                 <div class="wppf_property_floorplans clearfix">
                                     <div class='item'><a
                                             href='https://media.centrick.co.uk/app/uploads/2020/09/30cddc43-6097-4d17-9885-f78b1a4eed18SFP01-9-1160x684.jpg'
@@ -471,8 +472,8 @@
                                                 src='https://media.centrick.co.uk/app/uploads/2020/09/30cddc43-6097-4d17-9885-f78b1a4eed18SFP01-9-700x468.jpg' /></a>
                                     </div>
                                 </div>
-                            </div>
-                            <div id="tab-3" class="tab-content">
+                            </div> -->
+                            <div id="tab-2" class="tab-content">
                                 <div id="property_map_canvas" style="height:400px"></div>
                                 <script>
 
@@ -557,6 +558,10 @@
 
                                 </script>
                             </div>
+                            <div id="tab-4" class="tab-content tab-content--active">
+                                <iframe src="//www.youtube.com/embed/ooHS_wn2n9E" class="virtualTour" frameborder="0"
+                                    allow="autoplay; fullscreen" allowfullscreen=""></iframe>
+                            </div>
                         </div>
                     </div>
                     <div class='single-property--sidebar'>
@@ -582,183 +587,11 @@
                             </div>
                             <script async src="https://static.addtoany.com/menu/page.js"></script>
                         </div>
-                        <div class="valuation valuation-block">
-                            <div class="valuation--text-half">
-                                <h5 class="heading--white valuation--heading">Instant Property Valuation</h5>
-                            </div>
-                            <div class="valuation--form-half">
-                                <form method="get" action="https://centrick.co.uk/property-valuation"
-                                    id="homePageSearch" class="valuation-form">
-                                    <div class="valuation-fieldGroup">
-                                        <input name="postcode" type="text" placeholder="B3 3AG" value=""
-                                            class="valuation-input" autocomplete="off">
-                                        <span class="valuation-group__fieldError valuation-fieldGroup__fieldError"
-                                            style="display: none;"></span>
-                                    </div>
-                                    <button type="submit" class="button button--black">Get Valuation</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="calculator mort-calc">
-                            <div class="calculator__container">
-                                <div class="calculator__heading">
-                                    <h1 class="calculator__title">Mortgage Calculator</h1>
-                                    <span class="calculator__trigger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8">
-                                            <path fill="#000014" fill-rule="evenodd"
-                                                d="M11.9999999 1.215046L10.7013587 0 5.9972354 5.016245 1.2986411 0-1e-7 1.215046l5.3506616 5.707372.6465382.696692.652103-.696692z">
-                                            </path>
-                                        </svg>
-                                    </span>
-                                </div>
-                                <form action="https://centrick.co.uk/" method="get"
-                                    class="mortgage-calc calculator__form">
-                                    <div class="calculator__fieldGroup">
-                                        <label class="calculator__fieldLabel">Mortgage Amount</label>
-                                        <div class="cw-mortgage-field cw-mortgage-field-amount"><input type="number"
-                                                value="250000" id="cw_mortgage_amount" class="calculator__fieldInput"
-                                                placeholder="" required /></div>
-                                    </div>
-                                    <div class="calculator__fieldGroup">
-                                        <label class="calculator__fieldLabel">Number of years to repay</label>
-                                        <div class="cw-mortgage-field cw-mortgage-field-term"><input type="number"
-                                                value="25" id="cw_mortgage_term" class="calculator__fieldInput"
-                                                placeholder="" required /></div>
-                                    </div>
-                                    <div class="calculator__fieldGroup">
-                                        <label class="calculator__fieldLabel">Interest Rate %</label>
-                                        <div class="cw-mortgage-field cw-mortgage-field-interest-rate"><input
-                                                type="number" value="3" step="0.01" id="cw_mortgage_interestrate"
-                                                class="calculator__fieldInput" placeholder="%" required /></div>
-                                    </div>
-                                    <div class="calculator__fieldGroup">
-                                        <label class="calculator__fieldLabel">Mortgage Type</label>
-                                        <div class="cw-mortgage-field cw-mortgage-field-type"><select
-                                                id="cw_mortgage_type" class="calculator__fieldInput">
-                                                <option value="repayment">Repayment</option>
-                                                <option value="interest_only">Interest Only</option>
-                                            </select></div>
-                                    </div>
-                                    <input class="button" type="submit" value="Calculate" />
-                                    <div id="cw-mortgage-results">
-                                        <div id="cw-mortgage-results-total"></div>
-                                        <div id="cw-mortgage-results-interest-paid"></div>
-                                    </div>
-                                </form>
-                                <div class="calculator__footer">
-                                    <p>Please note: This calculation is a guide to how much your monthly repayments
-                                        would be. The exact amount may vary from this amount depending on your lender's
-                                        terms.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="calculator stamp-duty">
-                            <div class="calculator__container">
-                                <div class="calculator__heading">
-                                    <h1 class="calculator__title">Stamp Duty Calculator</h1>
-                                    <span class="calculator__trigger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8">
-                                            <path fill="#000014" fill-rule="evenodd"
-                                                d="M11.9999999 1.215046L10.7013587 0 5.9972354 5.016245 1.2986411 0-1e-7 1.215046l5.3506616 5.707372.6465382.696692.652103-.696692z">
-                                            </path>
-                                        </svg>
-                                    </span>
-                                </div>
-                                <form action="" method="get" class="cw-sdlt calculator__form stamp-duty-calc">
-                                    <label class="calculator__fieldLabel">Property Purchase Price</label>
-                                    <div class="cw-sdlt-field cw-sdlt-field-purchase-price">
-                                        <input type="number" value="250000" id="cw_sdlt_purchaseprice" placeholder=""
-                                            class="calculator__fieldInput" required />
-                                    </div>
-                                    <label class="calculator__fieldLabel">
-                                        <input type="checkbox" value="1" id="cw_sdlt_secondary"
-                                            class="calculator__fieldInput" /> Buy-to-let or second home
-                                    </label>
-                                    <label class="calculator__fieldLabel">
-                                        <input type="checkbox" value="1" id="cw_sdlt_first_time_buyer"
-                                            class="calculator__fieldInput" /> First time buyer
-                                    </label>
-                                    <input type="submit" value="Calculate" class="button" />
-                                    <div id="cw-sdlt-results" class="cw-sdlt-results">
-                                        <div id="cw-sdlt-results-total" class="cw-sdlt-results-total"></div>
-                                        <div id="cw-sdlt-results-table" class="cw-sdlt-results-table"></div>
-                                    </div>
-                                </form>
-                                <div class="calculator__footer">
-                                    <p>Please note: This calculator is provided as a guide only on how much stamp duty
-                                        land tax you will need to pay in England and Northern Ireland. It assumes that
-                                        the property is freehold and for residential purposes.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="calculator htb">
-                            <div class="calculator__container">
-
-                                <div class="calculator__heading">
-                                    <h1 class="calculator__title">Help To Buy Calculator</h1>
-                                    <span class="calculator__trigger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="8">
-                                            <path fill="#000014" fill-rule="evenodd"
-                                                d="M11.9999999 1.215046L10.7013587 0 5.9972354 5.016245 1.2986411 0-1e-7 1.215046l5.3506616 5.707372.6465382.696692.652103-.696692z" />
-                                        </svg>
-                                    </span>
-                                </div>
-
-                                <div action="#" class="calculator__form">
-
-                                    <div class="calculator__fieldGroup">
-                                        <label class="calculator__fieldLabel">Purchase Price</label>
-                                        <div class="price_group">
-                                            <input type="text" class="calculator__fieldInput purchasePrice format-input"
-                                                value="250000">
-                                        </div>
-                                    </div>
-
-                                    <div class="calculator__fieldGroup">
-                                        <label class="calculator__fieldLabel">Deposit Amount</label>
-                                        <div class="price_group">
-                                            <input type="text" class="calculator__fieldInput depositAmount format-input"
-                                                value="">
-                                        </div>
-                                    </div>
-
-                                    <div class="calculator__fieldGroup">
-                                        <label class="calculator__fieldLabel calculator__fieldLabel--dark">Help to buy
-                                            loan</label>
-                                        <div class="calculator__fieldGroup-input">
-                                            <input class="calculator__fieldValue format-input helpToBuyLoan" value="0"
-                                                disabled>
-                                        </div>
-                                    </div>
-
-                                    <div class="calculator__fieldGroup">
-                                        <label class="calculator__fieldLabel calculator__fieldLabel--dark">Remaining
-                                            Mortgage</label>
-                                        <div class="calculator__fieldGroup-input">
-                                            <input class="calculator__fieldValue format-input remainingMortgage"
-                                                value="0" disabled>
-                                        </div>
-                                    </div>
-
-                                    <button class="button calculateHTB">Calculate</button>
-
-                                </div>
-
-                                <div class="calculator__footer">
-                                    <p> This calculator provides a guide to help to buy equity loan that may be
-                                        available, and the amount of mortgage that you would require based on the
-                                        purchase price of the property, and the deposit that you can afford to put down
-                                        (min 5%), this does not guarantee eligibility for a mortgage.</p>
-                                    <p>For more details of the scheme see our <a href="#">Help to Buy Page</a>.</p>
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div><!-- #property-7199505 -->
 
-            <span id="modal-one" class="modal modal--form">
+            <div id="modal-one" class="modal modal--form">
                 <div class="modal__overlay"></div>
                 <div class="modal__content">
                     <div class="modal__content--upper">
@@ -773,7 +606,8 @@
                             <div class='gform_body'>
                                 <ul id='gform_fields_1'
                                     class='gform_fields top_label form_sublabel_below description_below'>
-                                    <li id='field_1_8' class='float-left gfield gf_left_half gfield_contains_required field_sublabel_below field_description_below gfield_visibility_visible'>
+                                    <li id='field_1_8'
+                                        class='float-left gfield gf_left_half gfield_contains_required field_sublabel_below field_description_below gfield_visibility_visible'>
                                         <label class='gfield_label' for='input_1_8'>Name<span
                                                 class='gfield_required'>*</span></label>
                                         <div class='ginput_container ginput_container_text'><input name='input_8'
@@ -859,45 +693,15 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class='gform_footer top_label'> <input type='submit' id='gform_submit_button_1'
-                                    class='gform_button button' value='Submit'
-                                    onclick='if(window["gf_submitting_1"]){return false;}  window["gf_submitting_1"]=true;  '
-                                    onkeypress='if( event.keyCode == 13 ){ if(window["gf_submitting_1"]){return false;} window["gf_submitting_1"]=true;  jQuery("#gform_1").trigger("submit",[true]); }' />
-                                <input type='hidden' name='gform_ajax'
-                                    value='form_id=1&amp;title=&amp;description=&amp;tabindex=0' />
-                                <input type='hidden' class='gform_hidden' name='is_submit_1' value='1' />
-                                <input type='hidden' class='gform_hidden' name='gform_submit' value='1' />
-
-                                <input type='hidden' class='gform_hidden' name='gform_unique_id' value='' />
-                                <input type='hidden' class='gform_hidden' name='state_1'
-                                    value='WyJbXSIsImE3NmZiZDA3NWQ0NGIwYzc5OGU2YTA3NGQyNWY1YWMwIl0=' />
-                                <input type='hidden' class='gform_hidden' name='gform_target_page_number_1'
-                                    id='gform_target_page_number_1' value='0' />
-                                <input type='hidden' class='gform_hidden' name='gform_source_page_number_1'
-                                    id='gform_source_page_number_1' value='1' />
-                                <input type='hidden' name='gform_field_values'
-                                    value='prop-name=Park+Close%2C+Solihull&amp;branch=Solihull&amp;full-address=3+Park+Close%2C+Solihull%2C+West+Midlands%2C+B92+9HF' />
-
+                            <div class='gform_footer top_label'>
+                                <input type='submit' id='gform_submit_button_1' class='gform_button button'
+                                    value='Submit' />
+                                <button id='close' style="background:red" class='button'>Cancel</button>
                             </div>
                         </form>
                     </div>
-                    <iframe style='display:none;width:0px;height:0px;' src='about:blank' name='gform_ajax_frame_1'
-                        id='gform_ajax_frame_1'
-                        title='This iframe contains the logic required to handle Ajax powered Gravity Forms.'></iframe>
-                    <script
-                        type='text/javascript'>jQuery(document).ready(function ($) { gformInitSpinner(1, '../../app/plugins/gravity-forms/images/spinner.gif'); jQuery('#gform_ajax_frame_1').on('load', function () { var contents = jQuery(this).contents().find('*').html(); var is_postback = contents.indexOf('GF_AJAX_POSTBACK') >= 0; if (!is_postback) { return; } var form_content = jQuery(this).contents().find('#gform_wrapper_1'); var is_confirmation = jQuery(this).contents().find('#gform_confirmation_wrapper_1').length > 0; var is_redirect = contents.indexOf('gformRedirect(){') >= 0; var is_form = form_content.length > 0 && !is_redirect && !is_confirmation; var mt = parseInt(jQuery('html').css('margin-top'), 10) + parseInt(jQuery('body').css('margin-top'), 10) + 100; if (is_form) { jQuery('#gform_wrapper_1').html(form_content.html()); if (form_content.hasClass('gform_validation_error')) { jQuery('#gform_wrapper_1').addClass('gform_validation_error'); } else { jQuery('#gform_wrapper_1').removeClass('gform_validation_error'); } setTimeout(function () { /* delay the scroll by 50 milliseconds to fix a bug in chrome */ jQuery(document).scrollTop(jQuery('#gform_wrapper_1').offset().top - mt); }, 50); if (window['gformInitDatepicker']) { gformInitDatepicker(); } if (window['gformInitPriceFields']) { gformInitPriceFields(); } var current_page = jQuery('#gform_source_page_number_1').val(); gformInitSpinner(1, '../../app/plugins/gravity-forms/images/spinner.gif'); jQuery(document).trigger('gform_page_loaded', [1, current_page]); window['gf_submitting_1'] = false; } else if (!is_redirect) { var confirmation_content = jQuery(this).contents().find('.GF_AJAX_POSTBACK').html(); if (!confirmation_content) { confirmation_content = contents; } setTimeout(function () { jQuery('#gform_wrapper_1').replaceWith(confirmation_content); jQuery(document).scrollTop(jQuery('#gf_1').offset().top - mt); jQuery(document).trigger('gform_confirmation_loaded', [1]); window['gf_submitting_1'] = false; }, 50); } else { jQuery('#gform_1').append(contents); if (window['gformRedirect']) { gformRedirect(); } } jQuery(document).trigger('gform_post_render', [1, current_page]); }); });</script>
-                    <script
-                        type='text/javascript'> jQuery(document).bind('gform_post_render', function (event, formId, currentPage) {
-                                if (formId == 1) {
-                                    if (typeof Placeholders != 'undefined') {
-                                        Placeholders.enable();
-                                    }
-                                }
-                            }); jQuery(document).bind('gform_post_conditional_logic', function (event, formId, fields, isInit) { });</script>
-                    <script
-                        type='text/javascript'> jQuery(document).ready(function () { jQuery(document).trigger('gform_post_render', [1, 1]) });</script>
                 </div>
-            </span>
+            </div>
         </div>
         <div class="container disclaimer">
             <span class="disclaimer__title">Disclaimer <i class="fas fa-chevron-down"></i></span>
@@ -1006,4 +810,5 @@
     <script type='text/javascript' src='static/js/frontend/make-enquiry.js' id='propertyhive_make_enquiry-js'></script>
     <script type='text/javascript' src='static/js/bundle.js' id='script-js'></script>
     <script type='text/javascript' src='static/js/wp-embed.mine.js' id='wp-embed-js'></script>
+    <script type="text/javascript" src="static/js/custom.js"></script>
 </body>
