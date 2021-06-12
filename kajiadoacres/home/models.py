@@ -8,6 +8,8 @@ from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 
+from property.models import Category
+
 
 class HomePage(Page):
     header_one = models.CharField(max_length=250, default='Find Land for Sale')
@@ -19,6 +21,13 @@ class HomePage(Page):
         FieldPanel('header_two'),
         InlinePanel('slider_images', label="Slider images"),
     ]
+
+    def get_context(self, request):
+        context = super(HomePage, self).get_context(request)
+        context['property_categories'] = Category.objects.all()
+        for _property in context['property_categories']:
+            print(_property.image)
+        return context
 
 
 class HomePageGalleryImage(Orderable):
