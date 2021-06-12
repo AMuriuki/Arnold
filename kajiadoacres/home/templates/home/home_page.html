@@ -1,0 +1,659 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}home page-template-default page page-id-643{% endblock %}
+
+{% block content %}
+<style>
+    .hero .property-search {
+        width: auto !important;
+    }
+
+    @media (min-width: 1225px) {
+        .hero .property-search {
+            padding: 0px !important;
+        }
+    }
+
+    .hero__content {
+        width: 100% !important;
+    }
+
+    .hero .property-search {
+        max-width: 90% !important;
+    }
+
+    .how-it-works {
+        list-style: decimal;
+        width: 100%;
+        font-size: 14px;
+        margin-bottom: 15px !important;
+        color: #747484
+    }
+
+    @media (min-width: 1225px) {
+        .hero .valuation .valuation--form-half {
+            width: 100%;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .property-link--listing {
+            width: 31.6% !important;
+        }
+    }
+
+    article {
+        /* width: 31.6% !important; */
+        margin-right: auto !important;
+    }
+
+    .flex {
+        display: flex !important;
+    }
+</style>
+{% include "header.html" %}
+<main>
+    <section class='hero'>
+        <div class='hero__container'>
+            <div class='hero__slider owl-carousel'>
+                <div class='hero__slider--item'>
+                    <div class='hero__slider--image inline-image owl-lazy'
+                        data-src='https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=865'
+                        data-src-retina=''></div>
+                    <div class='overlay'></div>
+                </div>
+                <div class='hero__slider--item'>
+                    <div class='hero__slider--image inline-image owl-lazy'
+                        data-src='https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8a2VueWF8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=60'
+                        data-src-retina='https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8a2VueWF8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=60'>
+                    </div><a href='developments/home-farm-barns/index.html'
+                        class='hero__prop-details hero__prop-details--link'>
+
+                    </a>
+                    <div class='overlay'></div>
+                </div>
+                <div class='hero__slider--item'>
+                    <div class='hero__slider--image inline-image owl-lazy'
+                        data-src='https://images.unsplash.com/photo-1603703176914-8dcd39c7b241?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTIyfHxrZW55YXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=60'
+                        data-src-retina='https://images.unsplash.com/photo-1603703176914-8dcd39c7b241?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTIyfHxrZW55YXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=60'>
+                    </div>
+                    <div class='overlay'></div>
+                </div>
+            </div>
+            <div class='hero__content'>
+                <h1 class='hero__content--title'>{{ page.header_one }}</h1>
+                <p class='hero__content--copy large'>Your trusted county experts in pre-verified properties.</p>
+                <div class="property-search">
+                    <div class="property-search__tabs">
+                        <ul>
+                            <li class="active" data-target="residential" class="property-search__tabs-resi">
+                                Regular Search</li>
+                            <li data-target="commercial" class="property-search__tabs-comm">Advanced Search</li>
+                        </ul>
+                    </div>
+                    <div class="property-search__box">
+                        <h5 class="heading heading--white">Find Land for Sale</h5>
+                        <form action="" method="GET" class="search-input__container search-input__residential active"
+                            id="residential">
+                            <select style="margin-bottom: 10px !important" name="select_propertytype">
+                                <option value="">Property Type</option>
+                                <option value="1">Land & Plots for Sale</option>
+                                <option value="2">Farm Land</option>
+                                <option value="3">Commercial Land</option>
+                                <option value="4">Houses & Apartments for Sale</option>
+                                <option value="5">Land on Cliff/Hill</option>
+                                <option value="6">Land & Plots for Sale</option>
+                                <option value="7">Land Touching Main Road</option>
+                                <option value="8">Residential Land</option>
+                                <option value="9">Quarry & Rocky Land</option>
+                                <option value="10">Mixed Use Land</option>
+                            </select>
+                            &nbsp;
+                            <select style="margin-bottom: 10px !important" name="select_minprice">
+                                <option value="">Min Price</option>
+                                <option value="1">Ksh. 1000</option>
+                                <option value="2">Ksh. 5000</option>
+                                <option value="3">Ksh. 10,000</option>
+                                <option value="1">Ksh. 50,000</option>
+                            </select>
+                            &nbsp;
+                            <select style="margin-bottom: 10px !important" name="select_maxprice">
+                                <option value="">Max Price</option>
+                                <option value="1">Ksh. 1000</option>
+                                <option value="2">Ksh. 5000</option>
+                                <option value="3">Ksh. 10,000</option>
+                                <option value="1">Ksh. 50,000</option>
+                            </select>
+                            &nbsp;
+                            <button class="button" name="department" value="residential-lettings" type="submit">Search
+                                <i class="fas fa-search"></i></button>
+                        </form>
+
+                        <form action="https://centrick.co.uk/properties/" method="GET"
+                            class="search-input__container search-input__commercial" id="commercial">
+
+                            <select name="select_propertytype">
+                                <option value="">Property Type</option>
+                                <option value="1">Land & Plots for Sale</option>
+                                <option value="2">Farm Land</option>
+                                <option value="3">Commercial Land</option>
+                                <option value="4">Houses & Apartments for Sale</option>
+                                <option value="5">Land on Cliff/Hill</option>
+                                <option value="6">Land & Plots for Sale</option>
+                                <option value="7">Land Touching Main Road</option>
+                                <option value="8">Residential Land</option>
+                                <option value="9">Quarry & Rocky Land</option>
+                                <option value="10">Mixed Use Land</option>
+                            </select>
+                            &nbsp;
+                            <select name="select_minprice">
+                                <option value="">Min Price</option>
+                                <option value="1">Ksh. 1000</option>
+                                <option value="2">Ksh. 5000</option>
+                                <option value="3">Ksh. 10,000</option>
+                                <option value="1">Ksh. 50,000</option>
+                            </select>
+                            &nbsp;
+                            <select name="select_maxprice">
+                                <option value="">Max Price</option>
+                                <option value="1">Ksh. 1000</option>
+                                <option value="2">Ksh. 5000</option>
+                                <option value="3">Ksh. 10,000</option>
+                                <option value="1">Ksh. 50,000</option>
+                            </select>
+                            &nbsp;
+                            <input name="txt_minarea" type="text" placeholder="Min Area (sq ft)" value="">
+                            &nbsp;
+                            <input name="txt_minarea" type="text" placeholder="Min Area (sq ft)" value="">
+                            <button class="button" name="department" value="residential-lettings" type="submit">Search
+                                <i class="fas fa-search"></i></button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="valuation valuation-block">
+            <div class="valuation--text-half">
+                <h5 class="heading--white valuation--heading">Search By Location</h5>
+            </div>
+            <div class="valuation--form-half">
+                <form method="get" action="" id="homePageSearch" class="valuation-form">
+                    <div class="valuation-fieldGroup">
+                        <input name="postcode" type="text" placeholder="Region / City / Town" value="">
+                        <span class="valuation-group__fieldError valuation-fieldGroup__fieldError"
+                            style="display: none;"></span>
+                    </div>
+                    <button type="submit" class="button button--black">Search</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="section section--page-cards">
+        <div class="container container--page-card container--center flex">
+            <a href='' class='page-link'>
+                <div class='inline-image page-link__image lazy'
+                    data-bg='url(https://images.pexels.com/photos/636342/pexels-photo-636342.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500)'>
+                </div>
+                <div class='page-link__bottom'>
+                    <h6 class='page-link__title'>Land & Plots for Sale</h6>
+                </div>
+            </a><a href='' class='page-link'>
+                <div class='inline-image page-link__image lazy'
+                    data-bg='url(https://cic.co.ke/wp-content/uploads/2019/08/Kajiado-Dala-Lekutuk-200-Acres.jpeg)'>
+                </div>
+                <div class='page-link__bottom'>
+                    <h6 class='page-link__title'>Farm Land</h6>
+                </div>
+            </a><a href='' class='page-link'>
+                <div class='inline-image page-link__image lazy'
+                    data-bg='url(https://images.pexels.com/photos/245634/pexels-photo-245634.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500)'>
+                </div>
+                <div class='page-link__bottom'>
+                    <h6 class='page-link__title'>Commercial Land</h6>
+                </div>
+            </a><a href='' class='page-link'>
+                <div class='inline-image page-link__image lazy'
+                    data-bg='url(https://lid.zoocdn.com/645/430/d8662006917adcb67452f811d6ed7cf9921d2004.jpg)'>
+                </div>
+                <div class='page-link__bottom'>
+                    <h6 class='page-link__title'>Houses & Apartments for Sale</h6>
+                </div>
+            </a><a href='' class='page-link'>
+                <div class='inline-image page-link__image lazy'
+                    data-bg='url(https://media.gettyimages.com/photos/scenic-mountain-against-a-cloudy-sky-oloroka-mountain-range-rift-picture-id1251698510?k=6&m=1251698510&s=612x612&w=0&h=sD2ScHmFBUp1fEqwheIKfaBEB4PgJR4Yvnt2q95I8dA=)'>
+                </div>
+                <div class='page-link__bottom'>
+                    <h6 class='page-link__title'>Land on Cliff/Hill</h6>
+                </div>
+            </a><a href='' class='page-link'>
+                <div class='inline-image page-link__image lazy'
+                    data-bg='url(https://media.istockphoto.com/videos/aerial-view-of-the-main-road-passing-through-kajiado-kenya-video-id1252669177?s=640x640)'>
+                </div>
+                <div class='page-link__bottom'>
+                    <h6 class='page-link__title'>Land Touching Main Road</h6>
+                    <p class='small page-link__excerpt'></p>
+                </div>
+            </a>
+            <a href='' class='page-link'>
+                <div class='inline-image page-link__image lazy'
+                    data-bg='url(https://www.pd.co.ke/wp-content/uploads/2020/03/A-view-of-Kitengela-town.gif)'>
+                </div>
+                <div class='page-link__bottom'>
+                    <h6 class='page-link__title'>Residential Land</h6>
+                    <p class='small page-link__excerpt'></p>
+                </div>
+            </a>
+            <a href='' class='page-link'>
+                <div class='inline-image page-link__image lazy'
+                    data-bg='url(https://waterworld.co.ke/wp-content/uploads/2020/09/Abadoned-Nkutoto-Ombaa-quarry-in-Kajiado-East-Sub-County.-Such-mining-sitesare-a-cause-of-public-concern.-Photo-Abdi-Hussein.jpg)'>
+                </div>
+                <div class='page-link__bottom'>
+                    <h6 class='page-link__title'>Quarry & Rocky Land</h6>
+                    <p class='small page-link__excerpt'></p>
+                </div>
+            </a>
+            <a href='' class='page-link'>
+                <div class='inline-image page-link__image lazy'
+                    data-bg='url(https://www.kenyamarkets.org/wp-content/uploads/2020/06/Land-use-transformation-in-Kajiado-County-Kenya-Implications-of-a-Changing-Climate-1.jpg)'>
+                </div>
+                <div class='page-link__bottom'>
+                    <h6 class='page-link__title'>Mixed Use Land</h6>
+                    <p class='small page-link__excerpt'></p>
+                </div>
+            </a>
+        </div>
+    </section>
+    <section class="section section--latest-post">
+        <div class="container">
+            <div class="flexRowOnly">
+                <h3 class="section-title section-title--center">List of Properties</h3>
+            </div>
+            <div class="flex property-row">
+                <article class="property-link property-link--listing">
+                    <figure>
+                        <a href="" class="property-link__img-contain">
+                            <img src="https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg"
+                                alt="50 acres Ilkisumeti" class="">
+                        </a>
+                        <figcaption class="property-link__tag">For Sale</figcaption>
+                    </figure>
+                    <div class="property-link__bottom">
+                        <a href="">
+                            <h6 class="property-link__title">50 acres Ilkisumeti</h6>
+                        </a>
+                        <div class="flex">
+                            <p class="property-link__house-desc"></p>
+                        </div>
+                        <div class="flex property-link__price-block">
+                            <h6 class="property-link__price">Ksh. 55,000
+                                <span class="price-qualifier"></span>
+                            </h6>
+                            <span>
+                                <p class="property-link__date">Added 2021-05-20</p>
+                            </span>
+                        </div>
+                        <div class="summary">
+                            <p class="small page-link__excerpt">
+                                50 acres flat red soil, great for farming or speculation.
+                            </p>
+                            <p class="small page-link__excerpt">
+                                70 Km from Ngong Town
+                            </p>
+                            <p class="small page-link__excerpt">
+                                Freehold land
+                            </p>
+                        </div>
+                    </div><!-- end of .property-link__bottom -->
+                    <div class="flex property-link__buttons">
+                        <a class="property-link__button property-link__viewing"
+                            href="property.html?request-viewing=true">
+                            Request Viewing
+                        </a>
+                        <a class="wppf_more property-link__button" href="property.html">
+                            Full Details
+                        </a>
+                    </div>
+                </article>
+                <article class="property-link property-link--listing">
+                    <figure>
+                        <a href="" class="property-link__img-contain">
+                            <img src="https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg"
+                                alt="50 acres Ilkisumeti" class="">
+                        </a>
+                        <figcaption class="property-link__tag">For Sale</figcaption>
+                    </figure>
+                    <div class="property-link__bottom">
+                        <a href="">
+                            <h6 class="property-link__title">50 acres Ilkisumeti</h6>
+                        </a>
+                        <div class="flex">
+                            <p class="property-link__house-desc"></p>
+                        </div>
+                        <div class="flex property-link__price-block">
+                            <h6 class="property-link__price">Ksh. 55,000
+                                <span class="price-qualifier"></span>
+                            </h6>
+                            <span>
+                                <p class="property-link__date">Added 2021-05-20</p>
+                            </span>
+                        </div>
+                        <div class="summary">
+                            <p class="small page-link__excerpt">
+                                50 acres flat red soil, great for farming or speculation.
+                            </p>
+                            <p class="small page-link__excerpt">
+                                70 Km from Ngong Town
+                            </p>
+                            <p class="small page-link__excerpt">
+                                Freehold land
+                            </p>
+                        </div>
+                    </div><!-- end of .property-link__bottom -->
+                    <div class="flex property-link__buttons">
+                        <a class="property-link__button property-link__viewing" href="">
+                            Request Viewing
+                        </a>
+                        <a class="wppf_more property-link__button" href="property.html">
+                            Full Details
+                        </a>
+                    </div>
+                </article>
+                <article class="property-link property-link--listing">
+                    <figure>
+                        <a href="" class="property-link__img-contain">
+                            <img src="https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg"
+                                alt="50 acres Ilkisumeti" class="">
+                        </a>
+                        <figcaption class="property-link__tag">For Sale</figcaption>
+                    </figure>
+                    <div class="property-link__bottom">
+                        <a href="">
+                            <h6 class="property-link__title">50 acres Ilkisumeti</h6>
+                        </a>
+                        <div class="flex">
+                            <p class="property-link__house-desc"></p>
+                        </div>
+                        <div class="flex property-link__price-block">
+                            <h6 class="property-link__price">Ksh. 55,000
+                                <span class="price-qualifier"></span>
+                            </h6>
+                            <span>
+                                <p class="property-link__date">Added 2021-05-20</p>
+                            </span>
+                        </div>
+                        <div class="summary">
+                            <p class="small page-link__excerpt">
+                                50 acres flat red soil, great for farming or speculation.
+                            </p>
+                            <p class="small page-link__excerpt">
+                                70 Km from Ngong Town
+                            </p>
+                            <p class="small page-link__excerpt">
+                                Freehold land
+                            </p>
+                        </div>
+                    </div><!-- end of .property-link__bottom -->
+                    <div class="flex property-link__buttons">
+                        <a class="property-link__button property-link__viewing" href="">
+                            Request Viewing
+                        </a>
+                        <a class="wppf_more property-link__button" href="property.html">
+                            Full Details
+                        </a>
+                    </div>
+                </article>
+                <article class="property-link property-link--listing">
+                    <figure>
+                        <a href="" class="property-link__img-contain">
+                            <img src="https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg"
+                                alt="50 acres Ilkisumeti" class="">
+                        </a>
+                        <figcaption class="property-link__tag">For Sale</figcaption>
+                    </figure>
+                    <div class="property-link__bottom">
+                        <a href="">
+                            <h6 class="property-link__title">50 acres Ilkisumeti</h6>
+                        </a>
+                        <div class="flex">
+                            <p class="property-link__house-desc"></p>
+                        </div>
+                        <div class="flex property-link__price-block">
+                            <h6 class="property-link__price">Ksh. 55,000
+                                <span class="price-qualifier"></span>
+                            </h6>
+                            <span>
+                                <p class="property-link__date">Added 2021-05-20</p>
+                            </span>
+                        </div>
+                        <div class="summary">
+                            <p class="small page-link__excerpt">
+                                50 acres flat red soil, great for farming or speculation.
+                            </p>
+                            <p class="small page-link__excerpt">
+                                70 Km from Ngong Town
+                            </p>
+                            <p class="small page-link__excerpt">
+                                Freehold land
+                            </p>
+                        </div>
+                    </div><!-- end of .property-link__bottom -->
+                    <div class="flex property-link__buttons">
+                        <a class="property-link__button property-link__viewing" href="">
+                            Request Viewing
+                        </a>
+                        <a class="wppf_more property-link__button" href="property.html">
+                            Full Details
+                        </a>
+                    </div>
+                </article>
+                <article class="property-link property-link--listing">
+                    <figure>
+                        <a href="" class="property-link__img-contain">
+                            <img src="https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg"
+                                alt="50 acres Ilkisumeti" class="">
+                        </a>
+                        <figcaption class="property-link__tag">For Sale</figcaption>
+                    </figure>
+                    <div class="property-link__bottom">
+                        <a href="">
+                            <h6 class="property-link__title">50 acres Ilkisumeti</h6>
+                        </a>
+                        <div class="flex">
+                            <p class="property-link__house-desc"></p>
+                        </div>
+                        <div class="flex property-link__price-block">
+                            <h6 class="property-link__price">Ksh. 55,000
+                                <span class="price-qualifier"></span>
+                            </h6>
+                            <span>
+                                <p class="property-link__date">Added 2021-05-20</p>
+                            </span>
+                        </div>
+                        <div class="summary">
+                            <p class="small page-link__excerpt">
+                                50 acres flat red soil, great for farming or speculation.
+                            </p>
+                            <p class="small page-link__excerpt">
+                                70 Km from Ngong Town
+                            </p>
+                            <p class="small page-link__excerpt">
+                                Freehold land
+                            </p>
+                        </div>
+                    </div><!-- end of .property-link__bottom -->
+                    <div class="flex property-link__buttons">
+                        <a class="property-link__button property-link__viewing" href="">
+                            Request Viewing
+                        </a>
+                        <a class="wppf_more property-link__button" href="property.html">
+                            Full Details
+                        </a>
+                    </div>
+                </article>
+                <article class="property-link property-link--listing">
+                    <figure>
+                        <a href="" class="property-link__img-contain">
+                            <img src="https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg"
+                                alt="50 acres Ilkisumeti" class="">
+                        </a>
+                        <figcaption class="property-link__tag">For Sale</figcaption>
+                    </figure>
+                    <div class="property-link__bottom">
+                        <a href="">
+                            <h6 class="property-link__title">50 acres Ilkisumeti</h6>
+                        </a>
+                        <div class="flex">
+                            <p class="property-link__house-desc"></p>
+                        </div>
+                        <div class="flex property-link__price-block">
+                            <h6 class="property-link__price">Ksh. 55,000
+                                <span class="price-qualifier"></span>
+                            </h6>
+                            <span>
+                                <p class="property-link__date">Added 2021-05-20</p>
+                            </span>
+                        </div>
+                        <div class="summary">
+                            <p class="small page-link__excerpt">
+                                50 acres flat red soil, great for farming or speculation.
+                            </p>
+                            <p class="small page-link__excerpt">
+                                70 Km from Ngong Town
+                            </p>
+                            <p class="small page-link__excerpt">
+                                Freehold land
+                            </p>
+                        </div>
+                    </div><!-- end of .property-link__bottom -->
+                    <div class="flex property-link__buttons">
+                        <a class="property-link__button property-link__viewing" href="">
+                            Request Viewing
+                        </a>
+                        <a class="wppf_more property-link__button" href="property.html">
+                            Full Details
+                        </a>
+                    </div>
+                </article>
+            </div>
+            <div class="flexRowOnly">
+                <a class="button button--purple" href="properties.html">View All</a>
+            </div>
+        </div>
+    </section>
+    <section class="section text-image aos-init aos-animate">
+
+        <div class="text-image--block container flex text-image__single">
+            <div class="text-image--image text-image--text-left ">
+                <img class='lazy' alt='' src="static/images/wallpaper.png" width='815' height='409'>
+            </div>
+            <div class='text-image--text text-image--text-right'>
+                <div class='text-image--text-content'>
+                    <h3 class="p1"><span class="s1">Your Property Experts</span></h3>
+                    <p class="p1">kajiado acres is a collaboration between lawyers, surveyors, and land sellers in
+                        and around Kajiado county, in an effort to promote transparency, honesty, and legitimacy in
+                        land
+                        dealings. Land sellers especially those from the Maasai community tend to be illiterate and
+                        fall victim to unscrupulous real estate agents. Kajiado acres facilitates direct dealing
+                        between
+                        the seller and the buyer, as well as offers initial free consultations to potential land
+                        buyers.</p>
+                </div>
+                <a class='button' href='' title='' target=''>Contact us</a>
+            </div>
+        </div>
+    </section>
+    <section class="section section--stat section--center">
+        <div class="container container--center flex">
+            <div class='stat'><span class='stat--figure'>Ksh 10M +</span>
+                <p class='stat--description'>properties managed</p>
+            </div>
+            <div class='stat'><span class='stat--figure'>Ksh 5M +</span>
+                <p class='stat--description'>properties sold</p>
+            </div>
+        </div>
+    </section>
+    <section class="section section--latest-post">
+        <div class="container">
+            <div class="flexRowOnly">
+                <h3 class="section-title section-title--center">Latest News & Insights</h3>
+            </div>
+            <div class="flex lastest-post--row">
+                <a class="page-link post-link" href="">
+                    <div class='post-link--img-contain'>
+                        <div class='inline-image page-link__image post-link__image lazy'
+                            data-bg='url(https://hassconsult.co.ke/real-estate/media/k2/items/cache/ccb4e23c8aa216f1e96d31ab209c036b_M.jpg)'>
+                        </div><span class='post-link--date'>16 Jul 2021</span>
+                    </div>
+                    <div class='page-link__bottom'>
+                        <div class='post-link__cats'><span>News</span><span class='pipe'>&#124;</span></div>
+                        <h6 class='page-link__title post-link__title'>How a 50Km road project built property
+                            millionaires</h6>
+                        <p class='small page-link__excerpt'>“Roads remain the essential network of the non-virtual
+                            world. They are the infrastructure upon which almost all other infrastructure depends.
+                            They are the paths of human endeavour.” When Ted Conover, a celebrated journalist....
+                        </p>
+                        <div class='button button--clear post-link__button'>Read More</div>
+                    </div>
+                </a>
+                <a class="page-link post-link" href="">
+                    <div class='post-link--img-contain'>
+                        <div class='inline-image page-link__image post-link__image lazy'
+                            data-bg='url(https://hassconsult.co.ke/real-estate/media/k2/items/cache/c99e3db826c0f4cc2688a36ce3b60e1a_M.jpg)'>
+                        </div><span class='post-link--date'>27 Apr 2021</span>
+                    </div>
+                    <div class='page-link__bottom'>
+                        <div class='post-link__cats'><span>News</span><span class='pipe'>&#124;</span></div>
+                        <h6 class='page-link__title post-link__title'>Kenyan's taste for apartments grows</h6>
+                        <p class='small page-link__excerpt'>Amid depressed house prices for the better part of last
+                            year, a majority of Kenyans who went into the market opted for apartments. This is
+                            according to the latest Kenya Bankers Association (KBA) Housing Price Index (HPI)
+                            that.....</p>
+                        <div class='button button--clear post-link__button'>Read More</div>
+                    </div>
+                </a>
+                <a class="page-link post-link" href="">
+                    <div class='post-link--img-contain'>
+                        <div class='inline-image page-link__image post-link__image lazy'
+                            data-bg='url(https://hassconsult.co.ke/real-estate/media/k2/items/cache/c99e3db826c0f4cc2688a36ce3b60e1a_M.jpg)'>
+                        </div><span class='post-link--date'>27 Apr 2021</span>
+                    </div>
+                    <div class='page-link__bottom'>
+                        <div class='post-link__cats'><span>News</span><span class='pipe'>&#124;</span></div>
+                        <h6 class='page-link__title post-link__title'>Kenyan's taste for apartments grows</h6>
+                        <p class='small page-link__excerpt'>Amid depressed house prices for the better part of last
+                            year, a majority of Kenyans who went into the market opted for apartments. This is
+                            according to the latest Kenya Bankers Association (KBA) Housing Price Index (HPI)
+                            that.....</p>
+                        <div class='button button--clear post-link__button'>Read More</div>
+                    </div>
+                </a>
+                <a class="page-link post-link" href="">
+                    <div class='post-link--img-contain'>
+                        <div class='inline-image page-link__image post-link__image lazy'
+                            data-bg='url(https://hassconsult.co.ke/real-estate/media/k2/items/cache/c99e3db826c0f4cc2688a36ce3b60e1a_M.jpg)'>
+                        </div><span class='post-link--date'>27 Apr 2021</span>
+                    </div>
+                    <div class='page-link__bottom'>
+                        <div class='post-link__cats'><span>News</span><span class='pipe'>&#124;</span></div>
+                        <h6 class='page-link__title post-link__title'>Kenyan's taste for apartments grows</h6>
+                        <p class='small page-link__excerpt'>Amid depressed house prices for the better part of last
+                            year, a majority of Kenyans who went into the market opted for apartments. This is
+                            according to the latest Kenya Bankers Association (KBA) Housing Price Index (HPI)
+                            that.....</p>
+                        <div class='button button--clear post-link__button'>Read More</div>
+                    </div>
+                </a>
+            </div>
+            <div class="flexRowOnly">
+                <a class="button button--purple" href="news-insight/index.html">View All</a>
+            </div>
+        </div>
+    </section>
+</main>
+{% include "footer.html" %}
+<div class="overlay overlay--body"></div>
+{% endblock %}

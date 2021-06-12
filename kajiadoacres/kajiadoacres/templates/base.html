@@ -1,0 +1,67 @@
+{% load static wagtailuserbar %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7, IE=EmulateIE9, IE=EDGE" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="facebook-domain-verification" content="huu37ed879vzewuqka1ipa556lffca" />
+    <title>
+        {% block title %}
+        {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+        {% endblock %}
+        {% block title_suffix %}
+        {% with self.get_site.site_name as site_name %}
+        {% if site_name %}- {{ site_name }}{% endif %}
+        {% endwith %}
+        {% endblock %}
+    </title>
+    <meta name="description" content="Kajiado acres is your trusted county experts in pre-verified properties." />
+    <link rel='stylesheet' id='wp-block-library-css' href="{% static 'css/style.mine.css' %}" type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='multiselect-css' href="{% static 'css/jquery.multiselect.css' %}" type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='propertyhive-general-css' href="{% static 'css/propertyhive.css' %}" type='text/css'
+        media='all' />
+    <link rel='stylesheet' id='parent-style-css' href="{% static 'css/style.css' %}" type='text/css' media='all' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type='text/javascript' src="{% static 'js/jquery/jquery-migrate.mind.js' %}"
+        id='jquery-migrate-js'></script>
+
+    <link rel="icon" href="{% static 'images/kajiadoacres.png' %}" sizes="32x32" />
+    <link rel="icon" href="{% static 'images/kajiadoacres.png' %}" sizes="192x192" />
+
+    {# Global stylesheets #}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/kajiadoacres.css' %}">
+
+    {% block extra_css %}
+    {# Override this in templates to add extra stylesheets #}
+    {% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+    {% wagtailuserbar %}
+
+    {% block content %}{% endblock %}
+
+    {# Global javascript #}
+    <script type="text/javascript" src="{% static 'js/kajiadoacres.js' %}"></script>
+    <script type='text/javascript' src="{% static 'js/ph-radial-search.js' %}" id='ph-radial-search-js'></script>
+    <script type='text/javascript' src="{% static 'js/frontend/search.js' %}" id='propertyhive_search-js'></script>
+    <script type='text/javascript' src="{% static 'js/frontend/make-enquiry.js' %}"
+        id='propertyhive_make_enquiry-js'></script>
+    <script type='text/javascript' src="{% static 'js/bundle.js' %}" id='script-js'></script>
+    <script type='text/javascript' src="{% static 'js/wp-embed.mine.js' %}" id='wp-embed-js'></script>
+    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+
+    {% block extra_js %}
+    {# Override this in templates to add extra javascript #}
+    {% endblock %}
+</body>
+
+</html>
