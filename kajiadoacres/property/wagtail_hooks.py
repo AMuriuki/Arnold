@@ -1,5 +1,5 @@
 from wagtail.contrib.modeladmin.options import (
-    ModelAdmin, modeladmin_register
+    ModelAdmin, ModelAdminGroup, modeladmin_register
 )
 from .models import Category, Property
 
@@ -7,7 +7,7 @@ from .models import Category, Property
 class CategoryAdmin(ModelAdmin):
     model = Category
     menu_label = 'Property Category'
-    menu_icon = 'pilcrow'
+    menu_icon = 'group'
     menu_order = 200
     add_to_settings_menu = False
     exclude_from_explorer = False
@@ -19,10 +19,17 @@ class CategoryAdmin(ModelAdmin):
 class PropertyAdmin(ModelAdmin):
     model = Property
     menu_label = 'Property Listing'
-    menu_icon = 'pilcrow'
+    menu_icon = 'group'
     list_display = ('title',)
     list_filter = ('title',)
     search_fields = ('title',)
 
 
-modeladmin_register(CategoryAdmin)
+class PropertyGroup(ModelAdminGroup):
+    menu_label = "Property"
+    menu_icon = "folder-open-inverse"
+    menu_order = 200
+    items = (CategoryAdmin, PropertyAdmin)
+
+
+modeladmin_register(PropertyGroup)

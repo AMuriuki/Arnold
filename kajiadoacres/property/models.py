@@ -1,8 +1,15 @@
-from django.db import models
+import datetime
 
-from wagtail.admin.edit_handlers import FieldPanel
+from django.db import models
+from modelcluster.models import ClusterableModel
+
+from modelcluster.fields import ParentalKey
+from wagtail.core.models import Page, Orderable
+from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.images.edit_handlers import ImageChooserPanel
-# Create your models here.
+from wagtail.search import index
+
 
 
 class Category(models.Model):
@@ -15,6 +22,9 @@ class Category(models.Model):
         related_name='+'
     )
 
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     panels = [
         FieldPanel('name'),
         ImageChooserPanel('image')
@@ -24,13 +34,40 @@ class Category(models.Model):
         return self.name
 
 
-class Property(models.Model):
+class Property(ClusterableModel):
     title = models.CharField(max_length=255)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
+    overview = RichTextField(blank=True)
+    date = models.DateField("Added", default=datetime.date.today)
+    PROPERTY_CHOICES = (
+        ('FOR_SALE', "For Sale"),
+        ('FOR_RENT', "For Rent"),
     )
+    property_type = models.CharField(
+        max_length=10, choices=PROPERTY_CHOICES, default="FOR_SALE")
+    price = models.CharField(max_length=255, default="KES")
+     
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('category'),
+        FieldPanel('overview', classname="full"),
+        FieldPanel('date'),
+        FieldPanel('property_type'),
+        FieldPanel('price'),
+        InlinePanel('property_images', label="Property images"),
+    ]
+
+
+class PropertyGalleryImage(Orderable):
+    page = ParentalKey(Property, on_delete=models.CASCADE,
+                       related_name='property_images')
+    image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
+    )
+    caption = models.CharField(blank=True, max_length=250)
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('caption'),
+    ]
