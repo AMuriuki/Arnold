@@ -183,8 +183,7 @@
             {% for property in property_categories %}
             {% image property.image max-320x200 as property_image %}
             <a href='' class='page-link'>
-                <div class='inline-image page-link__image lazy'
-                    data-bg='url({{property_image.url}})'>
+                <div class='inline-image page-link__image lazy' data-bg='url({{property_image.url}})'>
                 </div>
                 <div class='page-link__bottom'>
                     <h6 class='page-link__title'>{{property.name}}</h6>
@@ -199,27 +198,31 @@
                 <h3 class="section-title section-title--center">List of Properties</h3>
             </div>
             <div class="flex property-row">
+                {% for property in properties %}
                 <article class="property-link property-link--listing">
                     <figure>
                         <a href="" class="property-link__img-contain">
-                            <img src="https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg"
-                                alt="50 acres Ilkisumeti" class="">
+                            {% with property.main_image as main_image %}
+                            {% if main_image %}
+                            {% image main_image fill-1512x2016 %}
+                            {% endif %}
+                            {% endwith %}
                         </a>
-                        <figcaption class="property-link__tag">For Sale</figcaption>
+                        <figcaption class="property-link__tag">{{property.property_type}}</figcaption>
                     </figure>
                     <div class="property-link__bottom">
                         <a href="">
-                            <h6 class="property-link__title">50 acres Ilkisumeti</h6>
+                            <h6 class="property-link__title">{{property.title}}</h6>
                         </a>
                         <div class="flex">
                             <p class="property-link__house-desc"></p>
                         </div>
                         <div class="flex property-link__price-block">
-                            <h6 class="property-link__price">Ksh. 55,000
+                            <h6 class="property-link__price">{{property.price}}
                                 <span class="price-qualifier"></span>
                             </h6>
                             <span>
-                                <p class="property-link__date">Added 2021-05-20</p>
+                                <p class="property-link__date">Added {{property.date}}</p>
                             </span>
                         </div>
                         <div class="summary">
@@ -244,226 +247,7 @@
                         </a>
                     </div>
                 </article>
-                <article class="property-link property-link--listing">
-                    <figure>
-                        <a href="" class="property-link__img-contain">
-                            <img src="https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg"
-                                alt="50 acres Ilkisumeti" class="">
-                        </a>
-                        <figcaption class="property-link__tag">For Sale</figcaption>
-                    </figure>
-                    <div class="property-link__bottom">
-                        <a href="">
-                            <h6 class="property-link__title">50 acres Ilkisumeti</h6>
-                        </a>
-                        <div class="flex">
-                            <p class="property-link__house-desc"></p>
-                        </div>
-                        <div class="flex property-link__price-block">
-                            <h6 class="property-link__price">Ksh. 55,000
-                                <span class="price-qualifier"></span>
-                            </h6>
-                            <span>
-                                <p class="property-link__date">Added 2021-05-20</p>
-                            </span>
-                        </div>
-                        <div class="summary">
-                            <p class="small page-link__excerpt">
-                                50 acres flat red soil, great for farming or speculation.
-                            </p>
-                            <p class="small page-link__excerpt">
-                                70 Km from Ngong Town
-                            </p>
-                            <p class="small page-link__excerpt">
-                                Freehold land
-                            </p>
-                        </div>
-                    </div><!-- end of .property-link__bottom -->
-                    <div class="flex property-link__buttons">
-                        <a class="property-link__button property-link__viewing" href="">
-                            Request Viewing
-                        </a>
-                        <a class="wppf_more property-link__button" href="property.html">
-                            Full Details
-                        </a>
-                    </div>
-                </article>
-                <article class="property-link property-link--listing">
-                    <figure>
-                        <a href="" class="property-link__img-contain">
-                            <img src="https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg"
-                                alt="50 acres Ilkisumeti" class="">
-                        </a>
-                        <figcaption class="property-link__tag">For Sale</figcaption>
-                    </figure>
-                    <div class="property-link__bottom">
-                        <a href="">
-                            <h6 class="property-link__title">50 acres Ilkisumeti</h6>
-                        </a>
-                        <div class="flex">
-                            <p class="property-link__house-desc"></p>
-                        </div>
-                        <div class="flex property-link__price-block">
-                            <h6 class="property-link__price">Ksh. 55,000
-                                <span class="price-qualifier"></span>
-                            </h6>
-                            <span>
-                                <p class="property-link__date">Added 2021-05-20</p>
-                            </span>
-                        </div>
-                        <div class="summary">
-                            <p class="small page-link__excerpt">
-                                50 acres flat red soil, great for farming or speculation.
-                            </p>
-                            <p class="small page-link__excerpt">
-                                70 Km from Ngong Town
-                            </p>
-                            <p class="small page-link__excerpt">
-                                Freehold land
-                            </p>
-                        </div>
-                    </div><!-- end of .property-link__bottom -->
-                    <div class="flex property-link__buttons">
-                        <a class="property-link__button property-link__viewing" href="">
-                            Request Viewing
-                        </a>
-                        <a class="wppf_more property-link__button" href="property.html">
-                            Full Details
-                        </a>
-                    </div>
-                </article>
-                <article class="property-link property-link--listing">
-                    <figure>
-                        <a href="" class="property-link__img-contain">
-                            <img src="https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg"
-                                alt="50 acres Ilkisumeti" class="">
-                        </a>
-                        <figcaption class="property-link__tag">For Sale</figcaption>
-                    </figure>
-                    <div class="property-link__bottom">
-                        <a href="">
-                            <h6 class="property-link__title">50 acres Ilkisumeti</h6>
-                        </a>
-                        <div class="flex">
-                            <p class="property-link__house-desc"></p>
-                        </div>
-                        <div class="flex property-link__price-block">
-                            <h6 class="property-link__price">Ksh. 55,000
-                                <span class="price-qualifier"></span>
-                            </h6>
-                            <span>
-                                <p class="property-link__date">Added 2021-05-20</p>
-                            </span>
-                        </div>
-                        <div class="summary">
-                            <p class="small page-link__excerpt">
-                                50 acres flat red soil, great for farming or speculation.
-                            </p>
-                            <p class="small page-link__excerpt">
-                                70 Km from Ngong Town
-                            </p>
-                            <p class="small page-link__excerpt">
-                                Freehold land
-                            </p>
-                        </div>
-                    </div><!-- end of .property-link__bottom -->
-                    <div class="flex property-link__buttons">
-                        <a class="property-link__button property-link__viewing" href="">
-                            Request Viewing
-                        </a>
-                        <a class="wppf_more property-link__button" href="property.html">
-                            Full Details
-                        </a>
-                    </div>
-                </article>
-                <article class="property-link property-link--listing">
-                    <figure>
-                        <a href="" class="property-link__img-contain">
-                            <img src="https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg"
-                                alt="50 acres Ilkisumeti" class="">
-                        </a>
-                        <figcaption class="property-link__tag">For Sale</figcaption>
-                    </figure>
-                    <div class="property-link__bottom">
-                        <a href="">
-                            <h6 class="property-link__title">50 acres Ilkisumeti</h6>
-                        </a>
-                        <div class="flex">
-                            <p class="property-link__house-desc"></p>
-                        </div>
-                        <div class="flex property-link__price-block">
-                            <h6 class="property-link__price">Ksh. 55,000
-                                <span class="price-qualifier"></span>
-                            </h6>
-                            <span>
-                                <p class="property-link__date">Added 2021-05-20</p>
-                            </span>
-                        </div>
-                        <div class="summary">
-                            <p class="small page-link__excerpt">
-                                50 acres flat red soil, great for farming or speculation.
-                            </p>
-                            <p class="small page-link__excerpt">
-                                70 Km from Ngong Town
-                            </p>
-                            <p class="small page-link__excerpt">
-                                Freehold land
-                            </p>
-                        </div>
-                    </div><!-- end of .property-link__bottom -->
-                    <div class="flex property-link__buttons">
-                        <a class="property-link__button property-link__viewing" href="">
-                            Request Viewing
-                        </a>
-                        <a class="wppf_more property-link__button" href="property.html">
-                            Full Details
-                        </a>
-                    </div>
-                </article>
-                <article class="property-link property-link--listing">
-                    <figure>
-                        <a href="" class="property-link__img-contain">
-                            <img src="https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg"
-                                alt="50 acres Ilkisumeti" class="">
-                        </a>
-                        <figcaption class="property-link__tag">For Sale</figcaption>
-                    </figure>
-                    <div class="property-link__bottom">
-                        <a href="">
-                            <h6 class="property-link__title">50 acres Ilkisumeti</h6>
-                        </a>
-                        <div class="flex">
-                            <p class="property-link__house-desc"></p>
-                        </div>
-                        <div class="flex property-link__price-block">
-                            <h6 class="property-link__price">Ksh. 55,000
-                                <span class="price-qualifier"></span>
-                            </h6>
-                            <span>
-                                <p class="property-link__date">Added 2021-05-20</p>
-                            </span>
-                        </div>
-                        <div class="summary">
-                            <p class="small page-link__excerpt">
-                                50 acres flat red soil, great for farming or speculation.
-                            </p>
-                            <p class="small page-link__excerpt">
-                                70 Km from Ngong Town
-                            </p>
-                            <p class="small page-link__excerpt">
-                                Freehold land
-                            </p>
-                        </div>
-                    </div><!-- end of .property-link__bottom -->
-                    <div class="flex property-link__buttons">
-                        <a class="property-link__button property-link__viewing" href="">
-                            Request Viewing
-                        </a>
-                        <a class="wppf_more property-link__button" href="property.html">
-                            Full Details
-                        </a>
-                    </div>
-                </article>
+                {% endfor %}
             </div>
             <div class="flexRowOnly">
                 <a class="button button--purple" href="properties.html">View All</a>

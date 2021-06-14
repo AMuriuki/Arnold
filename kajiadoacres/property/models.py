@@ -11,7 +11,6 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 
 
-
 class Category(models.Model):
     name = models.CharField(max_length=255)
     image = models.ForeignKey(
@@ -37,26 +36,40 @@ class Category(models.Model):
 class Property(ClusterableModel):
     title = models.CharField(max_length=255)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    overview = RichTextField(blank=True)
+    property_features = RichTextField(blank=True)
+    property_description = RichTextField(blank=True)
     date = models.DateField("Added", default=datetime.date.today)
     PROPERTY_CHOICES = (
-        ('FOR_SALE', "For Sale"),
-        ('FOR_RENT', "For Rent"),
+        ('FOR SALE', "For Sale"),
+        ('FOR RENT', "For Rent"),
     )
     property_type = models.CharField(
         max_length=10, choices=PROPERTY_CHOICES, default="FOR_SALE")
     price = models.CharField(max_length=255, default="KES")
-     
+
+    class Meta:
+        verbose_name_plural = 'Properties'
 
     panels = [
         FieldPanel('title'),
         FieldPanel('category'),
-        FieldPanel('overview', classname="full"),
+        FieldPanel('property_features', classname="full"),
+        FieldPanel('property_description', classname="full"),
         FieldPanel('date'),
         FieldPanel('property_type'),
         FieldPanel('price'),
         InlinePanel('property_images', label="Property images"),
     ]
+
+    def __str__(self):
+        return self.title
+
+    def main_image(self):
+        gallery_item = self.property_images.first()
+        if gallery_item:
+            return gallery_item.image
+        else:
+            return None
 
 
 class PropertyGalleryImage(Orderable):

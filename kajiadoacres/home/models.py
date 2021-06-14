@@ -8,7 +8,7 @@ from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 
-from property.models import Category
+from property.models import Category, Property
 
 
 class HomePage(Page):
@@ -25,6 +25,9 @@ class HomePage(Page):
     def get_context(self, request):
         context = super(HomePage, self).get_context(request)
         context['property_categories'] = Category.objects.all()
+        context['properties'] = Property.objects.all()
+        for property in context['properties']:
+            print(property.property_images)
         return context
 
 
