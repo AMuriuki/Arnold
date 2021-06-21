@@ -1,14 +1,18 @@
 $(document).ready(function () {
-    console.log(window.location.pathname);
-    console.log(window.location.href);
-    console.log(window.location.origin);
     var currentPathname = window.location.pathname
-    if (currentPathname === "/property.html") {
+    if (currentPathname.toLowerCase().indexOf("/property/details/") >= 0) {
         var request_viewing = getUrlVars()["request-viewing"];
         if (request_viewing === "true") {
             $('.modalTrigger').click();
         }
     }
+
+    $('#gform_submit_button_close').click(function () {
+        if ($('#modal-one').hasClass("modal--active")) {
+            var e = document.getElementById("modal-one");
+            e.classList.remove("modal--active");
+        }
+    })
 });
 
 function getUrlVars() {

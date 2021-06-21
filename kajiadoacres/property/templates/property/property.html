@@ -10,8 +10,37 @@
         float: left !important;
     }
 
-    .property-link__date{
+    .property-link__date {
         font-size: 15px;
+    }
+
+    .modal__content {
+        height: 99%;
+    }
+
+    .modal__overlay:after {
+        display: none;
+        right: 13.8rem;
+        background-color: #000;
+        border: 1px solid #000;
+        color: #fff;
+    }
+
+    .modal .gform_wrapper .gform_footer input[type=button] {
+        height: 33px;
+        margin: 0;
+        padding: 0 18px;
+        line-height: 33px !important;
+        font-size: 14px;
+        width: auto;
+    }
+
+    @media (min-width: 1024px) {
+        .modal .gform_wrapper .gform_footer input[type=button] {
+            height: 50px;
+            line-height: 50px !important;
+            font-size: 16px;
+        }
     }
 </style>
 {% include "header.html" %}
@@ -86,7 +115,7 @@
                                 <h6 class="tab-content__title">Property Features</h6>
 
                                 <div class="key-features">
-                                    {{property.property_features|richtext}}                                    
+                                    {{property.property_features|richtext}}
                                 </div>
                             </div>
                             <div class="tab-content__section">
@@ -216,13 +245,14 @@
                     </div>
                 </div>
             </div>
-        </div><!-- #property-7199505 -->
+        </div>
+        <!-- #property-7199505 -->
 
         <div id="modal-one" class="modal modal--form">
             <div class="modal__overlay"></div>
             <div class="modal__content">
                 <div class="modal__content--upper">
-                    <h5>Request Viewing of 50 acres Ilkisumeti</h5>
+                    <h5>Request Viewing of {{property.title}}</h5>
                     <p>If you would like to arrange to view this property, please complete the form below and we
                         will be in touch with a possible time and date that is suitable for you.</p>
                 </div>
@@ -321,7 +351,8 @@
                         <div class='gform_footer top_label'>
                             <input type='submit' id='gform_submit_button_1' class='gform_button button'
                                 value='Submit' />
-                            <button id='close' style="background:red" class='button'>Cancel</button>
+                            <input type='button' id='gform_submit_button_close' style="background:red"
+                                class='gform_button button' value='Close' />
                         </div>
                     </form>
                 </div>
