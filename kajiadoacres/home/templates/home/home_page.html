@@ -226,15 +226,15 @@
                             </span>
                         </div>
                         <div class="summary">
-                            {{property.property_description|richtext|slice:":150"}}...                            
+                            {{property.property_description|richtext|slice:":150"}}...
                         </div>
                     </div><!-- end of .property-link__bottom -->
                     <div class="flex property-link__buttons">
                         <a class="property-link__button property-link__viewing"
-                            href="property.html?request-viewing=true">
+                            href="{% url 'property:property_details' property.slug %}?request-viewing=true">
                             Request Viewing
                         </a>
-                        <a class="wppf_more property-link__button" href="property.html">
+                        <a class="wppf_more property-link__button" href="{% url 'property:property_details' property.slug %}">
                             Full Details
                         </a>
                     </div>

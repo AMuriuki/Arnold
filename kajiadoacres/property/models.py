@@ -10,6 +10,8 @@ from wagtail.admin.edit_handlers import FieldPanel, InlinePanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 
+from kajiadoacres.utils import unique_slug_generator
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -46,6 +48,7 @@ class Property(ClusterableModel):
     property_type = models.CharField(
         max_length=10, choices=PROPERTY_CHOICES, default="FOR_SALE")
     price = models.CharField(max_length=255, default="KES")
+    slug = models.SlugField(unique=True, default="none")
 
     class Meta:
         verbose_name_plural = 'Properties'
@@ -64,12 +67,22 @@ class Property(ClusterableModel):
     def __str__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        self.slug = unique_slug_generator(self)
+
     def main_image(self):
-        gallery_item = self.property_images.first()
+        gallery_item = self.property_images.last()
         if gallery_item:
             return gallery_item.image
         else:
             return None
+
+    def all_images(self):
+        gallery_items = self.property_images.all()
+        property_images = []
+        for item in gallery_items:
+            property_images.append(item.image)
+        return property_images
 
 
 class PropertyGalleryImage(Orderable):

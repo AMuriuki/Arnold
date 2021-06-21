@@ -26,8 +26,6 @@ class HomePage(Page):
         context = super(HomePage, self).get_context(request)
         context['property_categories'] = Category.objects.all()
         context['properties'] = Property.objects.all()
-        for property in context['properties']:
-            print(property.property_images)
         return context
 
 

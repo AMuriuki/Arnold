@@ -2,8 +2,344 @@
 
 {% load wagtailcore_tags wagtailimages_tags %}
 
-{% block body_class %}home page-template-default page page-id-643{% endblock %}
+{% block body_class %}property-template-default single single-property postid-7199505 propertyhive propertyhive-page{% endblock %}
 
 {% block content %}
+<style>
+    .float-left {
+        float: left !important;
+    }
 
+    .property-link__date{
+        font-size: 15px;
+    }
+</style>
+{% include "header.html" %}
+<main>
+    <div class="flex image-container">
+        <a href="properties.html" class="back-to-results"><i class="fas fa-arrow-left"></i> Back
+            to Results</a>
+
+
+        <div class="propertyImagesWrap">
+            <div class="propertyImagesWrap__image propertyImagesWrap__image--half lazy"
+                data-bg="url('/media/original_images/{{main_image}}')">
+            </div>
+
+            <div class="propertyImagesWrap__image propertyImagesWrap__image--half propertyImagesWrap__image--flex">
+                {% for image in property_images|slice:":4" %}
+                <div class="propertyImagesWrap__smallImage lazy" data-bg="url('/media/original_images/{{image}}')">
+                </div>
+                {% endfor %}
+            </div>
+
+
+            <a href='https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg'
+                data-fancybox='images-preview' class='property-link__img-no' data-thumbs='{' autoStart':true}'><i
+                    class='fas fa-camera'></i> View Photos <span>(6)</span></a>
+        </div>
+
+
+        <div style="display: none;">
+            {% for image in property_images %}
+            <a href="/media/original_images/{{image}}" data-fancybox="images-preview"
+                data-thumb="/media/original_images/{{image}}"></a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container single-property--contain">
+        <div id="property-7199505"
+            class="post-7199505 type-property status-publish has-post-thumbnail availability-sold-stc price_qualifier-guide-price property department-residential-sales">
+            <div class="flex single-property-flex">
+                <div class="single-property--main">
+                    <!-- <div class="single-property--sold">
+                        <p>This property is currently available</p>
+                    </div> -->
+                    <div class="summary entry-summary">
+                        <h1 class="single-property__title">{{property.title}}</h1>
+                        <div class="flex">
+                            <p class="single-property__sub-title">
+                                {{property.property_type}}
+                            </p>
+                        </div>
+                        <div class="single-property__price-block flex">
+                            <h5 class="single-property__price">
+                                {{property.price}}
+                            </h5>
+                            <span>
+                                <p class="property-link__date">Added {{property.date}}</p>
+                            </span>
+                        </div>
+
+                    </div><!-- .summary -->
+
+                    <div class="single-property--tab-content">
+                        <ul class="single-property__tabs">
+                            <li class="tab tab--active" data-tab="tab-1">Overview</li>
+                            <!-- <li class="tab" data-tab="tab-2">Floorplans</li> -->
+                            <li class="tab" data-tab="tab-2">Map</li>
+                            <li class="tab" data-tab="tab-4">Video</li>
+                        </ul>
+                        <div id="tab-1" class="tab-content tab-content--active">
+                            <div class="tab-content__section">
+
+                                <h6 class="tab-content__title">Property Features</h6>
+
+                                <div class="key-features">
+                                    {{property.property_features|richtext}}                                    
+                                </div>
+                            </div>
+                            <div class="tab-content__section">
+
+                                <h6 class="tab-content__title">Property Description</h6>
+                                <div class="tab-content__read-more-section">
+                                    {{property.property_description|richtext}}
+                                    <div class="read-more-separator"></div>
+                                </div>
+                                <p class="read-more"><a href="#">Read More</a></p>
+
+                            </div>
+                        </div>
+                        <div id="tab-2" class="tab-content">
+                            <div id="property_map_canvas" style="height:400px"></div>
+                            <script>
+
+                                // We declare vars globally so developers can access them
+                                var property_map; // Global declaration of the map
+                                var property_marker; // Global declaration of the marker
+
+                                function initialize_property_map() {
+
+                                    var myLatlng = new google.maps.LatLng(52.4431533, -1.7717693);
+                                    var map_options = {
+                                        zoom: 14,
+                                        center: myLatlng,
+                                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                        scrollwheel: true
+                                    }
+                                    map_options.styles = [
+                                        {
+                                            "featureType": "road",
+                                            "elementType": "geometry",
+                                            "stylers": [
+                                                {
+                                                    "lightness": 100
+                                                },
+                                                {
+                                                    "visibility": "simplified"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "featureType": "water",
+                                            "elementType": "geometry",
+                                            "stylers": [
+                                                {
+                                                    "visibility": "on"
+                                                },
+                                                {
+                                                    "color": "#C6E2FF"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "featureType": "poi",
+                                            "elementType": "geometry.fill",
+                                            "stylers": [
+                                                {
+                                                    "color": "#C5E3BF"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "featureType": "road",
+                                            "elementType": "geometry.fill",
+                                            "stylers": [
+                                                {
+                                                    "color": "#D1D1B8"
+                                                }
+                                            ]
+                                        }
+                                    ]; property_map = new google.maps.Map(document.getElementById("property_map_canvas"), map_options);
+
+                                    var myLatlng = new google.maps.LatLng(52.4431533, -1.7717693);
+
+                                    var marker_options = {
+                                        map: property_map,
+                                        position: myLatlng
+                                    };
+
+                                    var ph_map_icon = {
+                                        url: 'https://media.centrick.co.uk/app/uploads/2020/10/13093713/marker.png'
+                                    }; marker_options.icon = ph_map_icon;
+
+                                    property_marker = new google.maps.Marker(marker_options);
+
+                                }
+
+                                if (window.addEventListener) {
+                                    window.addEventListener('load', initialize_property_map);
+                                } else {
+                                    window.attachEvent('onload', initialize_property_map);
+                                }
+
+                            </script>
+                        </div>
+                        <div id="tab-4" class="tab-content">
+                            <iframe src="//www.youtube.com/embed/ooHS_wn2n9E" class="virtualTour" frameborder="0"
+                                allow="autoplay; fullscreen" allowfullscreen=""></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class='single-property--sidebar'>
+                    <div class="sidebar--block sidebar--interested property-search">
+                        <div class="sidebar--interested--headings">
+                            <h6 class="heading--white">Interested?</h6>
+                            <a href="tel:0733650737"><i class="fas fa-phone"></i> 0733650737</a>
+                        </div>
+                        <button data-modal="modal-one" class="button button--full modalTrigger">Request
+                            Viewing</button>
+                        <button id="socialTrigger" class="button button--full button--charcoal">Share</button>
+                        <div id="socialPopup"
+                            class="sidebar__block social-share a2a_kit a2a_kit_size_32 a2a_default_style">
+                            <i class="far fa-times-circle social-close"></i>
+                            <h6 class="sidebar__title">Share This</h6>
+                            <div class="a2a_kit a2a_default_style">
+                                <a class="a2a_button_facebook"><i class="fab fa-facebook"></i></a>
+                                <a class="a2a_button_twitter"><i class="fab fa-twitter"></i></a>
+                                <a class="a2a_button_linkedin"><i class="fab fa-linkedin"></i></a>
+                                <a class="a2a_dd" href="https://www.addtoany.com/share"><i
+                                        class="fas fa-plus-circle"></i></a>
+                            </div>
+                        </div>
+                        <script async src="https://static.addtoany.com/menu/page.js"></script>
+                    </div>
+                </div>
+            </div>
+        </div><!-- #property-7199505 -->
+
+        <div id="modal-one" class="modal modal--form">
+            <div class="modal__overlay"></div>
+            <div class="modal__content">
+                <div class="modal__content--upper">
+                    <h5>Request Viewing of 50 acres Ilkisumeti</h5>
+                    <p>If you would like to arrange to view this property, please complete the form below and we
+                        will be in touch with a possible time and date that is suitable for you.</p>
+                </div>
+
+                <div class='gf_browser_unknown gform_wrapper' id='gform_wrapper_1'>
+                    <div id='gf_1' class='gform_anchor' tabindex='-1'></div>
+                    <form method='post' enctype='multipart/form-data' id='gform_1' action=''>
+                        <div class='gform_body'>
+                            <ul id='gform_fields_1'
+                                class='gform_fields top_label form_sublabel_below description_below'>
+                                <li id='field_1_8'
+                                    class='float-left gfield gf_left_half gfield_contains_required field_sublabel_below field_description_below gfield_visibility_visible'>
+                                    <label class='gfield_label' for='input_1_8'>Name<span
+                                            class='gfield_required'>*</span></label>
+                                    <div class='ginput_container ginput_container_text'><input name='input_8'
+                                            id='input_1_8' type='text' value='' class='medium' aria-required="true"
+                                            aria-invalid="false" /></div>
+                                </li>
+                                <li id='field_1_2'
+                                    class='gfield gf_right_half gfield_contains_required field_sublabel_below field_description_below gfield_visibility_visible'>
+                                    <label class='gfield_label' for='input_1_2'>Phone<span
+                                            class='gfield_required'>*</span></label>
+                                    <div class='ginput_container ginput_container_phone'><input name='input_2'
+                                            id='input_1_2' type='text' value='' class='medium' aria-required="true"
+                                            aria-invalid="false" /></div>
+                                </li>
+                                <li id='field_1_3'
+                                    class='float-left gfield gf_left_half gfield_contains_required field_sublabel_below field_description_below gfield_visibility_visible'>
+                                    <label class='gfield_label' for='input_1_3'>Email<span
+                                            class='gfield_required'>*</span></label>
+                                    <div class='ginput_container ginput_container_email'>
+                                        <input name='input_3' id='input_1_3' type='text' value='' class='medium'
+                                            aria-required="true" aria-invalid="false" />
+                                    </div>
+                                </li>
+                                <li id='field_1_9'
+                                    class='gfield gf_left_half datepicker field_sublabel_below field_description_below gfield_visibility_visible'>
+                                    <label class='gfield_label' for='input_1_9'>Date</label>
+                                    <div class='ginput_container ginput_container_text'><input name='input_9'
+                                            id='input_1_9' type='text' value='' class='medium' aria-invalid="false" />
+                                    </div>
+                                </li>
+                                <li id='field_1_4'
+                                    class='gfield gf_left_half field_sublabel_below field_description_below gfield_visibility_visible'>
+                                    <label class='gfield_label' for='input_1_4'>What times suit you best:</label>
+                                    <div class='ginput_container ginput_container_select'><select name='input_4'
+                                            id='input_1_4' class='medium gfield_select' aria-invalid="false">
+                                            <option value='AM'>AM</option>
+                                            <option value='PM'>PM</option>
+                                        </select></div>
+                                </li>
+                                <li id='field_1_6'
+                                    class='gfield field_sublabel_below field_description_below gfield_visibility_visible'>
+                                    <label class='gfield_label' for='input_1_6'>Any other information:</label>
+                                    <div class='ginput_container ginput_container_textarea'><textarea name='input_6'
+                                            id='input_1_6' class='textarea medium' placeholder='Any other information'
+                                            aria-invalid="false" rows='10' cols='50'></textarea></div>
+                                </li>
+                                <li id='field_1_7'
+                                    class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
+                                    <input name='input_7' id='input_1_7' type='hidden' class='gform_hidden'
+                                        aria-invalid="false" value='Park Close, Solihull' />
+                                </li>
+                                <li id='field_1_10'
+                                    class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
+                                    <input name='input_10' id='input_1_10' type='hidden' class='gform_hidden'
+                                        aria-invalid="false" value='Solihull' />
+                                </li>
+                                <li id='field_1_11'
+                                    class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
+                                    <input name='input_11' id='input_1_11' type='hidden' class='gform_hidden'
+                                        aria-invalid="false" value='3 Park Close, Solihull, West Midlands, B92 9HF' />
+                                </li>
+                                <li id='field_1_12'
+                                    class='gfield gform_hidden field_sublabel_below field_description_below gfield_visibility_visible'>
+                                    <input name='input_12' id='input_1_12' type='hidden' class='gform_hidden'
+                                        aria-invalid="false" value='' />
+                                </li>
+                                <li id='field_1_13'
+                                    class='gfield field_sublabel_below field_description_below gfield_visibility_visible'>
+                                    <label class='gfield_label' for='input_1_13'>CAPTCHA</label>
+                                    <div id='input_1_13' class='ginput_container ginput_recaptcha'
+                                        data-sitekey='6LdDqM8UAAAAAAqNzpeFkAK2q4XfyYy308Yxepwl' data-theme='light'
+                                        data-tabindex='0' data-badge=''></div>
+                                </li>
+                                <li id='field_1_14'
+                                    class='gfield gform_validation_container field_sublabel_below field_description_below gfield_visibility_visible'>
+                                    <label class='gfield_label' for='input_1_14'>Name</label>
+                                    <div class='ginput_container'><input name='input_14' id='input_1_14' type='text'
+                                            value='' /></div>
+                                    <div class='gfield_description' id='gfield_description_1_14'>This field is for
+                                        validation purposes and should be left unchanged.</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class='gform_footer top_label'>
+                            <input type='submit' id='gform_submit_button_1' class='gform_button button'
+                                value='Submit' />
+                            <button id='close' style="background:red" class='button'>Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container disclaimer">
+        <span class="disclaimer__title">Disclaimer <i class="fas fa-chevron-down"></i></span>
+        <p class="disclaimer__content">These particulars, whilst believed to be accurate are set out as a general
+            outline only for guidance and do not constitute any part of an offer or contract and are produced in
+            good faith and set out as a general guide only. The intending purchasers should not rely on them as
+            statements of representation of fact, but must satisfy themselves by inspection or otherwise as to their
+            accuracy. No employee of Centrick Property (and their Joint Agents where applicable) has the authority
+            to make or give any representation or warranty in respect of the property. Subjective comments in these
+            details imply the opinion of the selling Agent at the time these details were prepared. Naturally, the
+            opinions of purchasers may differ.</p>
+    </div>
+</main>
+{% include "footer.html" %}
+<div class="overlay overlay--body"></div>
 {% endblock %}
