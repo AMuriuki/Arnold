@@ -226,15 +226,7 @@
                             </span>
                         </div>
                         <div class="summary">
-                            <p class="small page-link__excerpt">
-                                50 acres flat red soil, great for farming or speculation.
-                            </p>
-                            <p class="small page-link__excerpt">
-                                70 Km from Ngong Town
-                            </p>
-                            <p class="small page-link__excerpt">
-                                Freehold land
-                            </p>
+                            {{property.property_description|richtext|slice:":150"}}...                            
                         </div>
                     </div><!-- end of .property-link__bottom -->
                     <div class="flex property-link__buttons">
