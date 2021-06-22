@@ -13,6 +13,8 @@ $(document).ready(function () {
             e.classList.remove("modal--active");
         }
     })
+
+    $('.select2').select2();
 });
 
 function getUrlVars() {
