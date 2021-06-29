@@ -29,7 +29,7 @@
                 <div class='post-link__cats'><span>News</span><span class='pipe'>&#124;</span><span>Sales</span><span
                         class='pipe'>&#124;</span><span>Lettings</span><span class='pipe'>&#124;</span></div>
                 <h6 class='page-link__title post-link__title'>{{post.title}}</h6>
-                <p class='small page-link__excerpt'>{{post.specific.intro|richtext}}</p>
+                {{post.specific.intro|richtext}}
                 <div class='button button--clear post-link__button'>Read More</div>
             </div>
         </a> </div>
@@ -66,7 +66,7 @@
                     <div class='page-link__bottom'>
                         <div class='post-link__cats'><span>News</span><span class='pipe'>&#124;</span></div>
                         <h6 class='page-link__title post-link__title'>{{ post.title }}</h6>
-                        <p class='small page-link__excerpt'>{{ post.specific.intro|richtext }}</p>
+                        {{ post.specific.intro|richtext }}
                         <div class='button button--clear post-link__button'>Read More</div>
                     </div>
                 </a>
