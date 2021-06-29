@@ -18,6 +18,8 @@ urlpatterns = [
     
     path('property/', include(('property.urls', 'property'), namespace='property')),
 
+    path('blog/', include(('blog.urls', 'blog'), namespace='blog')),
+
 ]
 
 

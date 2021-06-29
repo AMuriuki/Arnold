@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}blog{% endblock %}
+
+{% block content %}
+{% include "header.html" %}
+<main>
+    <section class="inline-image lazy page-banner"
+        data-src="https://centrick.co.uk/app/uploads/2019/02/ResidentialSales_TennantSt_exterior-1920x1288.jpg">
+        <div class="container">
+            <div class="page-banner__content">
+                <h1>{{page.page_title}}</h1>
+                <p class='large'>{{page.page_subtitle}}</p>
+            </div>
+        </div>
+        <div class="overlay overlay--banner"></div>
+    </section>
+    {% for post in featured_post %}
+    <div class='container box-shad featured-post'><a class="page-link post-link"
+            href="{% pageurl post %}">
+            <div class='post-link--img-contain'>
+                <div class='inline-image page-link__image post-link__image lazy'
+                    data-bg='url(https://media.centrick.co.uk/app/uploads/2021/03/03142335/Rishi-Sunak-Budget-Property.jpg)'>
+                </div><span class='post-link--date'>{{post.specific.date}}</span>
+            </div>
+            <div class='page-link__bottom'>
+                <div class='post-link__cats'><span>News</span><span class='pipe'>&#124;</span><span>Sales</span><span
+                        class='pipe'>&#124;</span><span>Lettings</span><span class='pipe'>&#124;</span></div>
+                <h6 class='page-link__title post-link__title'>{{post.title}}</h6>
+                <p class='small page-link__excerpt'>{{post.specific.intro|richtext}}</p>
+                <div class='button button--clear post-link__button'>Read More</div>
+            </div>
+        </a> </div>
+    </div>
+    {% endfor %}
+    <div class='container flex cat-row'>
+        <p class="cat-row__cat active"><a href="index.html" alt="View all posts">All</a><span>&#40;69&#41;</span>
+        </p>
+        <p class="cat-row__cat "><a href="../news/category/life-at-centrick/index.html"
+                alt="View all posts in Life at Centrick">Life at Centrick</a><span>&#40;2&#41;</span></p>
+        <p class="cat-row__cat "><a href="../news/category/news/index.html"
+                alt="View all posts in News">News</a><span>&#40;64&#41;</span></p>
+        <p class="cat-row__cat "><a href="../news/category/sales/index.html"
+                alt="View all posts in Sales">Sales</a><span>&#40;29&#41;</span></p>
+        <p class="cat-row__cat "><a href="../news/category/lettings/index.html"
+                alt="View all posts in Lettings">Lettings</a><span>&#40;18&#41;</span></p>
+        <p class="cat-row__cat "><a href="../news/category/new-homes/index.html" alt="View all posts in New Homes">New
+                Homes</a><span>&#40;10&#41;</span></p>
+        <p class="cat-row__cat "><a href="../news/category/btr-asset-management/index.html"
+                alt="View all posts in BTR &amp; Asset Management">BTR &amp; Asset
+                Management</a><span>&#40;3&#41;</span></p>
+        <p class="cat-row__cat "><a href="../news/category/estate-management/index.html"
+                alt="View all posts in Estate Management">Estate Management</a><span>&#40;6&#41;</span></p>
+    </div>
+    <section class="section section--latest-post section--latest-post__archive">
+        <div class="container">
+            <div class="flex index-row">
+                {% for post in blogpages %}
+                <a class="page-link post-link" href="{% pageurl post %}">
+                    <div class='post-link--img-contain'>
+                        <div class='inline-image page-link__image post-link__image lazy' data-bg='url()'>
+                        </div><span class='post-link--date'>4 May 2021</span>
+                    </div>
+                    <div class='page-link__bottom'>
+                        <div class='post-link__cats'><span>News</span><span class='pipe'>&#124;</span></div>
+                        <h6 class='page-link__title post-link__title'>{{ post.title }}</h6>
+                        <p class='small page-link__excerpt'>{{ post.specific.intro|richtext }}</p>
+                        <div class='button button--clear post-link__button'>Read More</div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section class='section section--pagination'>
+        <div class='container pagination'><span aria-current="page" class="page-numbers current">1</span>
+            <a class="page-numbers" href="page/2/index.html">2</a>
+            <span class="page-numbers dots">&hellip;</span>
+            <a class="page-numbers" href="page/7/index.html">7</a>
+            <a class="page-numbers" href="page/8/index.html">8</a>
+            <a class="next page-numbers" href="page/2/index.html">Next <i class="fas fa-angle-right"></i></a>
+        </div>
+    </section>
+</main>
+{% include "footer.html" %}
+
+
+{% endblock %}
