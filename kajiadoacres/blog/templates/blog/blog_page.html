@@ -1,19 +1,25 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}post-template-default single single-post postid-7191531 single-format-standard{% endblock %}
 
 {% block content %}
 {% include "header.html" %}
 <main>
-    <section class="inline-image lazy page-banner"
-        data-src="https://media.centrick.co.uk/app/uploads/2020/07/20115221/Stamp-duty-holiday-%E2%80%93-typical-buyer-in-the-Midlands-could-save-over-%C2%A32000-2200x865.jpg">
+    {% image self.banner_image fill-900x400 as img %}
+    <section class="inline-image lazy page-banner" data-src="{{img.url}}">
         <div class="container">
             <div class="page-banner__content">
-                <div class='page-banner__single-info'><span class='page-banner__date'>{{ page.date }}</span><span
-                        class='pipe'>&#124;</span><span>News</span><span
-                        class='pipe'>&#124;</span><span>Sales</span><span class='pipe'>&#124;</span> </div>
+                <div class='page-banner__single-info'>
+                    <span class='page-banner__date'>{{ page.date }}</span>
+                    {% if page.tags.all.count %}
+                    {% for tag in page.tags.all %}
+                    <span class='pipe'>&#124;</span>
+                    <a href=""><span>{{tag}}</span></a>
+                    {% endfor %}
+                    {% endif %}
+                </div>
                 <h1>{{ page.title }}</h1>
             </div>
         </div>
@@ -40,35 +46,29 @@
 
             <div class='sidebar__block latest-articles'>
                 <h6 class='sidebar__title'>Latest Articles</h6>
-                <div class='latest-articles__post-links'><a
-                        href="../first-impressions-count-10-ways-to-get-your-home-ready-for-viewings/index.html">First
-                        impressions count: 10 ways to get your home ready for viewings</a><a
-                        href="../9-things-you-can-do-in-a-weekend-to-improve-the-appeal-of-your-home/index.html">9
-                        things you can do in a weekend to improve the appeal of your home</a><a
-                        href="../which-bills-are-you-responsible-for-as-a-tenant/index.html">Which bills are you
-                        responsible for as a tenant?</a><a href="../../indexedfb.html?p=7256627">East Midlands
-                        Property Market Update April 2021</a></div><a class="view-all" href="{{ page.get_parent.url }}"
-                    alt="View all posts">View All</a>
+                <div class='latest-articles__post-links'>
+                    {% for post in latestarticles %}
+                    <a href="{% pageurl post %}">{{post.title}}</a>
+                    {% endfor %}
+                </div>
+                <a class="view-all" href="{{ page.get_parent.url }}" alt="View all posts">View All</a>
             </div>
             <div class='sidebar__block cat-block'>
                 <h6 class='sidebar__title'>Categories</h6>
                 <p class="cat-row__cat"><a href="{{ page.get_parent.url }}"
                         alt="View all posts">All</a><span>&#40;69&#41;</span></p>
-                <p class="cat-row__cat"><a href="../category/life-at-centrick/index.html"
-                        alt="View all posts in Life at Centrick">Life at Centrick</a><span>&#40;2&#41;</span></p>
-                <p class="cat-row__cat"><a href="../category/news/index.html"
-                        alt="View all posts in News">News</a><span>&#40;64&#41;</span></p>
-                <p class="cat-row__cat"><a href="../category/sales/index.html"
-                        alt="View all posts in Sales">Sales</a><span>&#40;29&#41;</span></p>
-                <p class="cat-row__cat"><a href="../category/lettings/index.html"
-                        alt="View all posts in Lettings">Lettings</a><span>&#40;18&#41;</span></p>
-                <p class="cat-row__cat"><a href="../category/new-homes/index.html" alt="View all posts in New Homes">New
-                        Homes</a><span>&#40;10&#41;</span></p>
-                <p class="cat-row__cat"><a href="../category/btr-asset-management/index.html"
-                        alt="View all posts in BTR &amp; Asset Management">BTR &amp; Asset
-                        Management</a><span>&#40;3&#41;</span></p>
-                <p class="cat-row__cat"><a href="../category/estate-management/index.html"
-                        alt="View all posts in Estate Management">Estate Management</a><span>&#40;6&#41;</span></p>
+                {% with categories=page.categories.all %}
+                {% if categories %}
+                {% for category in categories %}
+                <p class="cat-row__cat">
+                    <a href="" alt="View all posts in Life at Centrick">
+                        {{category.name}}
+                    </a>
+                    <span>&#40;2&#41;</span>
+                </p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
             </div>
         </aside>
     </div>

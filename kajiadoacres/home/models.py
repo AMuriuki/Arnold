@@ -9,6 +9,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 
 from property.models import Category, Property
+from blog.models import BlogPage
 
 
 class HomePage(Page):
@@ -24,8 +25,10 @@ class HomePage(Page):
 
     def get_context(self, request):
         context = super(HomePage, self).get_context(request)
+        blogpages = BlogPage.objects.live().order_by('-first_published_at')
         context['property_categories'] = Category.objects.all()
         context['properties'] = Property.objects.all()
+        context['blogpages'] = blogpages
         return context
 
 
