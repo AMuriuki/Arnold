@@ -2,7 +2,8 @@
 
 {% load wagtailcore_tags wagtailimages_tags %}
 
-{% block body_class %}property-template-default single single-property postid-7199505 propertyhive propertyhive-page{% endblock %}
+{% block body_class %}property-template-default single single-property postid-7199505 propertyhive propertyhive-page
+{% endblock %}
 
 {% block content %}
 <style>
@@ -63,7 +64,7 @@
             </div>
 
 
-            <a href='https://d12prgon3aw7l1.cloudfront.net/1292219_img-20190630-165343-8_1512x2016.jpg'
+            <a href='/media/original_images/{{main_image}}'
                 data-fancybox='images-preview' class='property-link__img-no' data-thumbs='{' autoStart':true}'><i
                     class='fas fa-camera'></i> View Photos <span>(6)</span></a>
         </div>
@@ -252,6 +253,7 @@
             <div class="modal__overlay"></div>
             <div class="modal__content">
                 <div class="modal__content--upper">
+                    <span id="gform_submit_icon_close" style="float: right; font-size: 20px; cursor: pointer;" class="w3-button w3-display-topright">&times;</span>
                     <h5>Request Viewing of {{property.title}}</h5>
                     <p>If you would like to arrange to view this property, please complete the form below and we
                         will be in touch with a possible time and date that is suitable for you.</p>

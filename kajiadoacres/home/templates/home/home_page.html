@@ -53,7 +53,7 @@
         display: flex !important;
     }
 
-    .button{
+    .button {
         height: 50px;
     }
 </style>
@@ -122,8 +122,8 @@
                             </button>
                         </form>
 
-                        <form action="#" method="GET"
-                            class="search-input__container search-input__commercial" id="commercial">
+                        <form action="#" method="GET" class="search-input__container search-input__commercial"
+                            id="commercial">
 
                             <select name="select_propertytype">
                                 <option value="">Property Type</option>
@@ -206,7 +206,7 @@
                 {% for property in properties %}
                 <article class="property-link property-link--listing">
                     <figure>
-                        <a href="" class="property-link__img-contain">
+                        <a href="{% url 'property:property_details' property.slug %}" class="property-link__img-contain">
                             {% with property.main_image as main_image %}
                             {% if main_image %}
                             {% image main_image fill-1512x2016 %}
@@ -216,7 +216,7 @@
                         <figcaption class="property-link__tag">{{property.property_type}}</figcaption>
                     </figure>
                     <div class="property-link__bottom">
-                        <a href="">
+                        <a href="{% url 'property:property_details' property.slug %}">
                             <h6 class="property-link__title">{{property.title}}</h6>
                         </a>
                         <div class="flex">
@@ -253,10 +253,10 @@
         </div>
     </section>
     <section class="section text-image aos-init aos-animate">
-
+        {% image self.banner_image fill-900x400 as img %}
         <div class="text-image--block container flex text-image__single">
             <div class="text-image--image text-image--text-left ">
-                <img class='lazy' alt='' src="static/images/wallpaper.png" width='815' height='409'>
+                <img alt='' src="{{img.url}}">
             </div>
             <div class='text-image--text text-image--text-right'>
                 <div class='text-image--text-content'>
@@ -296,8 +296,7 @@
                 {% image banner_image fill-900x400 as img %}
                 <a class="page-link post-link" href="{% pageurl post %}">
                     <div class='post-link--img-contain'>
-                        <div class='inline-image page-link__image post-link__image lazy'
-                            data-bg='url({{img.url}})'>
+                        <div class='inline-image page-link__image post-link__image lazy' data-bg='url({{img.url}})'>
                         </div><span class='post-link--date'>{{post.date}}</span>
                     </div>
                     <div class='page-link__bottom'>

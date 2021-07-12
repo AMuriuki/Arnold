@@ -8,6 +8,10 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import *
 
 
+def is_valid_queryparam(param):
+    return param != '' and param is not None
+
+
 class PropertyView(TemplateView):
     template_name = 'property/property.html'
 
@@ -35,7 +39,8 @@ def properties(request):
 
         category_id = request.GET.get('category')
 
-        properties = properties.filter(category__id=category_id)
+        if is_valid_queryparam(category_id):
+            properties = properties.filter(category__id=category_id)
 
         page = request.GET.get('page', 1)
         paginator = Paginator(properties, 32)

@@ -14,6 +14,13 @@ $(document).ready(function () {
         }
     })
 
+    $('#gform_submit_icon_close').click(function () {
+        if ($('#modal-one').hasClass("modal--active")) {
+            var e = document.getElementById("modal-one");
+            e.classList.remove("modal--active");
+        }
+    })
+
     $('.select2').select2();
 });
 

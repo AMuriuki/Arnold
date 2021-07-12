@@ -16,11 +16,19 @@ class HomePage(Page):
     header_one = models.CharField(max_length=250, default='Find Land for Sale')
     header_two = models.CharField(
         max_length=250, default='Your trusted county experts in pre-verified properties.')
+    banner_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel('header_one'),
         FieldPanel('header_two'),
         InlinePanel('slider_images', label="Slider images"),
+        ImageChooserPanel("banner_image"),
     ]
 
     def get_context(self, request):
