@@ -47,8 +47,7 @@
 {% include "header.html" %}
 <main>
     <div class="flex image-container">
-        <a href="properties.html" class="back-to-results"><i class="fas fa-arrow-left"></i> Back
-            to Results</a>
+        <a href="{% url 'property:properties' %}" class="back-to-results"><i class="fas fa-arrow-left"></i> All Properties</a>
 
 
         <div class="propertyImagesWrap">
@@ -66,7 +65,7 @@
 
             <a href='/media/original_images/{{main_image}}'
                 data-fancybox='images-preview' class='property-link__img-no' data-thumbs='{' autoStart':true}'><i
-                    class='fas fa-camera'></i> View Photos <span>(6)</span></a>
+                    class='fas fa-camera'></i> View Photos <span>({{property_images|length}})</span></a>
         </div>
 
 
@@ -216,8 +215,8 @@
                             </script>
                         </div>
                         <div id="tab-4" class="tab-content">
-                            <iframe src="//www.youtube.com/embed/ooHS_wn2n9E" class="virtualTour" frameborder="0"
-                                allow="autoplay; fullscreen" allowfullscreen=""></iframe>
+                            <!-- <iframe src="//www.youtube.com/embed/ooHS_wn2n9E" class="virtualTour" frameborder="0"
+                                allow="autoplay; fullscreen" allowfullscreen=""></iframe> -->
                         </div>
                     </div>
                 </div>

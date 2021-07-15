@@ -162,7 +162,7 @@
                     {% for property in properties %}
                     <article class="property-link property-link--listing">
                         <figure>
-                            <a href="" class="property-link__img-contain">
+                            <a href="{% url 'property:property_details' property.slug %}" class="property-link__img-contain">
                                 {% with property.main_image as main_image %}
                                 {% if main_image %}
                                 {% image main_image fill-1512x2016 %}
@@ -172,7 +172,7 @@
                             <figcaption class="property-link__tag">{{property.property_type}}</figcaption>
                         </figure>
                         <div class="property-link__bottom">
-                            <a href="">
+                            <a href="{% url 'property:property_details' property.slug %}">
                                 <h6 class="property-link__title">{{property.title}}</h6>
                             </a>
                             <div class="flex">
