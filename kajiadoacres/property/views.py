@@ -21,7 +21,7 @@ class PropertiesView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(PropertiesView, self).get_context_data(*args, **kwargs)
-        ctx['properties'] = Property.objects.all()
+        ctx['properties'] = Property.objects.all().order_by('-date')
         ctx['properties_choices'] = Property.objects.values(
             'property_type').distinct()
         ctx['prices'] = Property.objects.values('property_type').distinct()
@@ -31,7 +31,7 @@ class PropertiesView(TemplateView):
 
 def properties(request):
     if request.method == "GET":
-        properties = Property.objects.all()
+        properties = Property.objects.all().order_by('-date')
         properties_choices = Property.objects.values(
             'property_type').distinct()
         prices = Property.objects.values('property_type').distinct()

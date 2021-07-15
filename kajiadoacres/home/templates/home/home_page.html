@@ -197,6 +197,7 @@
             {% endfor %}
         </div>
     </section>
+    {% if properties %}
     <section class="section section--latest-post">
         <div class="container">
             <div class="flexRowOnly">
@@ -252,6 +253,7 @@
             </div>
         </div>
     </section>
+    {% endif %}
     <section class="section text-image aos-init aos-animate">
         {% image self.banner_image fill-900x400 as img %}
         <div class="text-image--block container flex text-image__single">
@@ -276,7 +278,7 @@
     </section>
     <section class="section section--stat section--center">
         <div class="container container--center flex">
-            <div class='stat'><span class='stat--figure'>Ksh 10M +</span>
+            <div class='stat'><span class='stat--figure'>{{properties|length}} +</span>
                 <p class='stat--description'>properties managed</p>
             </div>
             <div class='stat'><span class='stat--figure'>Ksh 5M +</span>
@@ -284,6 +286,7 @@
             </div>
         </div>
     </section>
+    {% if blogpages %}
     <section class="section section--latest-post">
         <div class="container">
             <div class="flexRowOnly">
@@ -316,6 +319,7 @@
             </div>
         </div>
     </section>
+    {% endif %}
 </main>
 {% include "footer.html" %}
 <div class="overlay overlay--body"></div>
