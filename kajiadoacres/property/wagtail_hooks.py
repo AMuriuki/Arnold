@@ -27,11 +27,12 @@ class PropertyAdmin(ModelAdmin):
     search_fields = ('title', 'category', 'date', 'price',)
 
 
-class PropertyGroup(ModelAdminGroup):
-    menu_label = "Property"
-    menu_icon = "folder-open-inverse"
-    menu_order = 200
-    items = (CategoryAdmin, PropertyAdmin)
+# class PropertyGroup(ModelAdminGroup):
+#     menu_label = "Property"
+#     menu_icon = "folder-open-inverse"
+#     menu_order = 200
+#     items = (CategoryAdmin, PropertyAdmin)
 
 
-modeladmin_register(PropertyGroup)
+modeladmin_register(CategoryAdmin)
+modeladmin_register(PropertyAdmin)

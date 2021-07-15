@@ -69,6 +69,7 @@ class Property(ClusterableModel):
 
     def save(self, *args, **kwargs):
         self.slug = unique_slug_generator(self)
+        super().save(*args, **kwargs)
 
     def main_image(self):
         gallery_item = self.property_images.last()
