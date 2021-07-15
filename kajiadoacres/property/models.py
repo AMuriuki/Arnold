@@ -40,7 +40,8 @@ class Property(ClusterableModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     property_features = RichTextField(blank=True)
     property_description = RichTextField(blank=True)
-    date = models.DateField("Added", default=datetime.date.today)
+    date = models.DateTimeField("Added", default=datetime.datetime.now)
+    # actual_datetime = models.DateTimeField("Date Time Added", default=datetime.datetime.now)
     PROPERTY_CHOICES = (
         ('FOR SALE', "For Sale"),
         ('FOR RENT', "For Rent"),

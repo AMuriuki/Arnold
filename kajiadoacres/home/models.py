@@ -35,7 +35,7 @@ class HomePage(Page):
         context = super(HomePage, self).get_context(request)
         blogpages = BlogPage.objects.live().order_by('-first_published_at')
         context['property_categories'] = Category.objects.all()
-        context['properties'] = Property.objects.all()
+        context['properties'] = Property.objects.all().order_by('-date')
         context['blogpages'] = blogpages
         return context
 
