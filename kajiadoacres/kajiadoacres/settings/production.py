@@ -1,7 +1,7 @@
-from kajiadoacres.kajiadoacres.settings.dev import SECRET_KEY
 from .base import *
 
 DEBUG = False
+
 
 try:
     from .local import *
