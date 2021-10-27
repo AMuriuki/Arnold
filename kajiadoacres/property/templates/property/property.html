@@ -52,18 +52,18 @@
 
         <div class="propertyImagesWrap">
             <div class="propertyImagesWrap__image propertyImagesWrap__image--half lazy"
-                data-bg="url('/media/original_images/{{main_image}}')">
+                data-bg="url('https://kajiadoacres.s3.amazonaws.com/original_images/{{main_image}}')">
             </div>
 
             <div class="propertyImagesWrap__image propertyImagesWrap__image--half propertyImagesWrap__image--flex">
                 {% for image in property_images|slice:":4" %}
-                <div class="propertyImagesWrap__smallImage lazy" data-bg="url('/media/original_images/{{image}}')">
+                <div class="propertyImagesWrap__smallImage lazy" data-bg="url('https://kajiadoacres.s3.amazonaws.com/original_images/{{image}}')">
                 </div>
                 {% endfor %}
             </div>
 
 
-            <a href='/media/original_images/{{main_image}}'
+            <a href='https://kajiadoacres.s3.amazonaws.com/original_images/{{main_image}}'
                 data-fancybox='images-preview' class='property-link__img-no' data-thumbs='{' autoStart':true}'><i
                     class='fas fa-camera'></i> View Photos <span>({{property_images|length}})</span></a>
         </div>
@@ -71,8 +71,8 @@
 
         <div style="display: none;">
             {% for image in property_images %}
-            <a href="/media/original_images/{{image}}" data-fancybox="images-preview"
-                data-thumb="/media/original_images/{{image}}"></a>
+            <a href="https://kajiadoacres.s3.amazonaws.com/original_images/{{image}}" data-fancybox="images-preview"
+                data-thumb="https://kajiadoacres.s3.amazonaws.com/original_images/{{image}}"></a>
             {% endfor %}
         </div>
     </div>
