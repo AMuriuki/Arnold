@@ -523,7 +523,6 @@ select {
     background-repeat: no-repeat;
     background-position-y: 50%;
     background-position-x: calc(100% - 16px);
-    /* background-image: url(1d5b655f8e7663f7c3ec1aeceffdb1a4.png); */
     background-size: 10px auto
 }
 
@@ -1999,7 +1998,6 @@ body.compensate-for-scrollbar {
     height: 30px;
     text-align: center;
     cursor: pointer;
-    background-image: url(23b78e824d8780e47491a476939425ec.png);
     background-repeat: no-repeat;
     line-height: 600%;
     overflow: hidden
