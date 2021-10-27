@@ -1,4 +1,3 @@
-from kajiadoacres import kajiadoacres
 from .base import *
 
 DEBUG = False
