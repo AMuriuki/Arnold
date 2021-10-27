@@ -11,14 +11,18 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="facebook-domain-verification" content="huu37ed879vzewuqka1ipa556lffca" />
     <title>
+        {% if '/property/details/' in request.path %}
+        {{property.title}} - Kajiado Acres
+        {% else %}
         {% block title %}
         {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
         {% endblock %}
         {% block title_suffix %}
         {% with self.get_site.site_name as site_name %}
-        {% if site_name %}- {{ site_name }}{% endif %}
+        {% if site_name %} - {{ site_name }}{% endif %}
         {% endwith %}
         {% endblock %}
+        {% endif %}
     </title>
     <meta name="description" content="Kajiado acres is your trusted county experts in pre-verified properties." />
     <link rel='stylesheet' id='wp-block-library-css' href="{% static 'css/style.mine.css' %}" type='text/css'
@@ -49,7 +53,6 @@
         integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 </head>
 <style>
-    
     .float {
         position: fixed;
         width: 60px;
@@ -69,12 +72,19 @@
         margin-top: 16px;
     }
 </style>
+
 <body class="{% block body_class %}{% endblock %}">
     {% wagtailuserbar %}
 
     {% block content %}{% endblock %}
+    {% if '/property/details/' in request.path %}
+    <a class="float" target="_blank"
+        href="https://api.whatsapp.com/send?phone=254720491427&text=https://kajiadoacres.com{{request.path}}"><i
+            class="fab fa-whatsapp my-float"></i></a>
+    {% else %}
     <a class="float" target="_blank" href="https://api.whatsapp.com/send?phone=254720491427"><i
-        class="fab fa-whatsapp my-float"></i></a>
+            class="fab fa-whatsapp my-float"></i></a>
+    {% endif %}
     {# Global javascript #}
     <script type="text/javascript" src="{% static 'js/kajiadoacres.js' %}"></script>
     <script type='text/javascript' src="{% static 'js/ph-radial-search.js' %}" id='ph-radial-search-js'></script>

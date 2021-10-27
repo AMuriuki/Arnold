@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -60,8 +62,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
-
+    # 'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
@@ -93,8 +95,14 @@ WSGI_APPLICATION = 'kajiadoacres.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'kajiadoacres',
+        'USER': 'kajiadoacres',
+        'PASSWORD': 'kajiadoacres',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -147,7 +155,8 @@ STATICFILES_DIRS = [
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
 # JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
 # See https://docs.djangoproject.com/en/3.2/ref/contrib/staticfiles/#manifeststaticfilesstorage
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
@@ -163,3 +172,8 @@ WAGTAIL_SITE_NAME = "kajiadoacres"
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
+
+AWS_STORAGE_BUCKET_NAME = 'kajiadoacres'
+AWS_ACCESS_KEY_ID = 'AKIAYOFW4TZ2TUF4NHFA'
+AWS_SECRET_ACCESS_KEY = 'Pp6AeYEC9VB1e99Y7oAffuIyO3ap5ZBU1qh+tJXO'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME

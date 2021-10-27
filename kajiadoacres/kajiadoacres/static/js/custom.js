@@ -34,3 +34,4 @@ function getUrlVars() {
     }
     return vars;
 }
+
