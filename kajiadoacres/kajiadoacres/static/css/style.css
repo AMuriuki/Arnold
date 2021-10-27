@@ -876,7 +876,6 @@ blockquote p:first-child:first-letter {
         padding: 0 0 0 80px
     }
     blockquote:before {
-        content: url(1296aa23c0d5e82dc4017a6d66e7617c.svg);
         position: absolute;
         left: 0;
         top: 7px;
@@ -9464,7 +9463,6 @@ https://flickity.metafizzy.co
     top: 50%;
     margin-left: -40px;
     margin-top: -40px;
-    background: url(4a37f8008959c75f619bf0a3a4e2d7a2.png) no-repeat;
     cursor: pointer;
     z-index: 1;
     -webkit-backface-visibility: hidden;
