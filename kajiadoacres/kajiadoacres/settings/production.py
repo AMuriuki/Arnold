@@ -2,6 +2,8 @@ from .base import *
 
 DEBUG = False
 
+SECRET_KEY = 'cb24ba8fc1564c33b0a2540dfd331199'
+
 try:
     from .local import *
 except ImportError:
