@@ -65,5 +65,4 @@ class PropertyDetailsView(DetailView):
         property = Property.objects.filter(slug=self.kwargs['slug']).first()
         ctx['property_images'] = property.all_images()
         ctx['main_image'] = property.main_image()
-        print(ctx['main_image'])
         return ctx
