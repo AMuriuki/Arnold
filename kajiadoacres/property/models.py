@@ -69,6 +69,7 @@ class Property(ClusterableModel):
         return self.title
 
     def save(self, *args, **kwargs):
+        print("!!!!!!!!!")
         if self._state.adding is True:
             self.slug = unique_slug_generator(self)
             super().save(*args, **kwargs)
