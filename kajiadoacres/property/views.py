@@ -1,3 +1,4 @@
+from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import (View, TemplateView, ListView,
@@ -29,6 +30,12 @@ class PropertiesView(TemplateView):
         return ctx
 
 
+def get_properties(request):
+    properties = Property.objects.order_by('-date').values(
+        'slug', 'title', 'price', 'date', 'property_type', 'category__id')
+    return JsonResponse({'queryset': list(properties)})
+
+
 def properties(request):
     if request.method == "GET":
         properties = Property.objects.all().order_by('-date')
@@ -43,7 +50,7 @@ def properties(request):
             properties = properties.filter(category__id=category_id)
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(properties, 32)
+        paginator = Paginator(properties, 1)
 
         try:
             properties = paginator.page(page)
@@ -51,6 +58,17 @@ def properties(request):
             properties = paginator.page(1)
         except EmptyPage:
             properties = paginator.page(paginator.num_pages)
+
+    if request.method == "POST":
+        if request.POST.get('property_category'):
+            category_id = request.POST.get('property_category')
+        else:
+            category_id = None
+
+        properties = Property.objects.filter(category__id=category_id).values(
+            'slug', 'title', 'price', 'date', 'property_type').all()
+
+        return JsonResponse({'properties': list(properties)})
 
     return render(request, 'property/properties.html', {'properties': properties, 'properties_choices': properties_choices, 'prices': prices, 'categories': categories, 'category_id': category_id})
 

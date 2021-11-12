@@ -14,7 +14,7 @@
         }
     }
 
-    .select2{
+    .select2 {
         width: 100% !important;
         height: 40px !important;
         text-indent: 5px !important;
@@ -44,7 +44,8 @@
                             <select name="category" id="category" class="select2">
                                 <option value="">Select Category</option>
                                 {% for category in categories %}
-                                <option value="{{category.id}}" {% ifequal category.id|stringformat:"s"  category_id %} selected {% endifequal %}>{{category.name}}</option>
+                                <option value="{{category.id}}" {% ifequal category.id|stringformat:"s" category_id %}
+                                    selected {% endifequal %}>{{category.name}}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -157,12 +158,13 @@
                     </div>
                 </div>
                 <!-- <ul class="properties clear"> -->
-                <div class="flex property-row">
+                <div id="dv_propertyrow" class="flex property-row">
                     {% if properties %}
                     {% for property in properties %}
                     <article class="property-link property-link--listing">
                         <figure>
-                            <a href="{% url 'property:property_details' property.slug %}" class="property-link__img-contain">
+                            <a href="{% url 'property:property_details' property.slug %}"
+                                class="property-link__img-contain">
                                 {% with property.main_image as main_image %}
                                 {% if main_image %}
                                 {% image main_image fill-1512x2016 %}
@@ -212,19 +214,34 @@
 
                 {% if properties.has_other_pages %}
                 <nav class="navigation pagination" role="navigation">
-                    <ul class='page-numbers'>
+                    <ul class='ul-pagination page-numbers'>
                         {% if properties.has_previous %}
-                        <li><a class="prev page-numbers" href="">Previous</a></li>
+                        <li>
+                            <a class="prev page-numbers"
+                                href="?page={{properties.previous_page_number}}{% if category_id %}&category={{category_id}}{% endif %}">
+                                Previous
+                            </a>
+                        </li>
                         {% endif %}
                         {% for i in properties.paginator.page_range %}
                         {% if properties.number == i %}
-                        <li><span aria-current="page" class="page-numbers current">{{i}}</span></li>
-                        {% elif i > properties.number|add:'-4' and i < properties.number|add:'4' %} <li><a
-                                class="page-numbers" href="?page={{i}}">{{i}}</a></li>
+                        <li>
+                            <span aria-current="page" class="page-numbers current">
+                                {{i}}
+                            </span>
+                        </li>
+                        {% elif i > properties.number|add:'-4' and i < properties.number|add:'4' %} <li>
+                            <a class="page-numbers"
+                                href="?page={{i}}{% if category_id %}&category={{category_id}}{% endif %}">
+                                {{i}}
+                            </a>
+                            </li>
                             {% endif %}
                             {% endfor %}
                             {% if properties.has_next %}
-                            <li><a class="next page-numbers" href="">Next</a></li>
+                            <li><a class="next page-numbers"
+                                    href="?page={{properties.next_page_number}}{% if category_id %}&category={{category_id}}{% endif %}">Next</a>
+                            </li>
                             {% endif %}
                     </ul>
                 </nav>
