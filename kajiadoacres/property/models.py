@@ -78,6 +78,13 @@ class Property(ClusterableModel):
             return gallery_item.image
         else:
             return None
+    
+    def get_main_image_title(self):
+        gallery_item = self.property_images.last()
+        if gallery_item:
+            return gallery_item.image.title
+        else:
+            return None
 
     def all_images(self):
         gallery_items = self.property_images.all()

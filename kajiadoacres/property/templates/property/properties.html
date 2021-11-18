@@ -39,8 +39,9 @@
 
                     <form name="ph_property_search" class="property-search-form property-search-form-default clear"
                         action="#" method="get" role="form">
+                        {%csrf_token%}
                         <div class="control control-department">
-                            <label for="commercial_for_sale_to_rent">Property Category</label>
+                            <label for="category">Property Category</label>
                             <select name="category" id="category" class="select2">
                                 <option value="">Select Category</option>
                                 {% for category in categories %}
@@ -50,15 +51,12 @@
                             </select>
                         </div>
 
-                        <div class="control control-commercial_for_sale_to_rent">
-                            <label for="commercial_for_sale_to_rent">For Sale/To Rent</label>
-                            <select name="commercial_for_sale_to_rent" id="commercial_for_sale_to_rent" class="select2"
-                                data-blank-option="">
+                        <div class="control control-for_sale_or_rent">
+                            <label for="for_sale_or_rent">For Sale/To Rent</label>
+                            <select name="for_sale_or_rent" id="for_sale_or_rent" class="select2" data-blank-option="">
                                 <option value="" selected='selected'>Select for sale/to rent</option>
-                                {% for property_choice in properties_choices %}
-                                <option value="{{property_choice.property_type}}">{{property_choice.property_type}}
-                                </option>
-                                {% endfor %}
+                                <option value="FOR SALE">FOR SALE</option>
+                                <option value="FOR RENT">FOR RENT</option>
 
                             </select>
                         </div>
@@ -246,6 +244,11 @@
                     </ul>
                 </nav>
                 {% endif %}
+                <nav class="navigation pagination" role="navigation" style="display: none;">
+                    <ul class='ul-pagination page-numbers'>
+
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

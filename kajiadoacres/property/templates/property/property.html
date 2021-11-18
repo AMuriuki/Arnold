@@ -47,7 +47,8 @@
 {% include "header.html" %}
 <main>
     <div class="flex image-container">
-        <a href="{% url 'property:properties' %}" class="back-to-results"><i class="fas fa-arrow-left"></i> All Properties</a>
+        <a href="{% url 'property:properties' %}" class="back-to-results"><i class="fas fa-arrow-left"></i> All
+            Properties</a>
 
 
         <div class="propertyImagesWrap">
@@ -57,13 +58,14 @@
 
             <div class="propertyImagesWrap__image propertyImagesWrap__image--half propertyImagesWrap__image--flex">
                 {% for image in property_images|slice:":4" %}
-                <div class="propertyImagesWrap__smallImage lazy" data-bg="url('https://kajiadoacres.s3.amazonaws.com/original_images/{{image}}')">
+                <div class="propertyImagesWrap__smallImage lazy"
+                    data-bg="url('https://kajiadoacres.s3.amazonaws.com/original_images/{{image}}')">
                 </div>
                 {% endfor %}
             </div>
 
 
-            <a href='https://kajiadoacres.s3.amazonaws.com/original_images/{{main_image}}'
+            <a id="view_photos" href='https://kajiadoacres.s3.amazonaws.com/original_images/{{main_image}}'
                 data-fancybox='images-preview' class='property-link__img-no' data-thumbs='{' autoStart':true}'><i
                     class='fas fa-camera'></i> View Photos <span>({{property_images|length}})</span></a>
         </div>
@@ -253,7 +255,8 @@
             <div class="modal__overlay"></div>
             <div class="modal__content">
                 <div class="modal__content--upper">
-                    <span id="gform_submit_icon_close" style="float: right; font-size: 20px; cursor: pointer;" class="w3-button w3-display-topright">&times;</span>
+                    <span id="gform_submit_icon_close" style="float: right; font-size: 20px; cursor: pointer;"
+                        class="w3-button w3-display-topright">&times;</span>
                     <h5>Request Viewing of {{property.title}}</h5>
                     <p>If you would like to arrange to view this property, please complete the form below and we
                         will be in touch with a possible time and date that is suitable for you.</p>

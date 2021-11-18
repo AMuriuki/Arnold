@@ -1,4 +1,6 @@
+// global variables
 var currentPathname = window.location.pathname
+var main_image;
 $(document).ready(function () {
     if (currentPathname.toLowerCase().indexOf("/property/details/") >= 0) {
         var request_viewing = getUrlVars()["request-viewing"];
@@ -14,6 +16,10 @@ $(document).ready(function () {
         $('#category').change(function () {
             sessionStorage.clear();
             changeCategory($(this).val())
+        })
+        $('#for_sale_or_rent').change(function () {
+            sessionStorage.clear();
+            changePropertyType($(this).val())
         })
     }
 
@@ -32,17 +38,44 @@ $(document).ready(function () {
         }
     })
 
+    $('.propertyImagesWrap__image').click(function (e) {
+        $('#view_photos').click();
+    });
+
     $('.select2').select2();
 });
 
 
 function changeCategory(category) {
     sessionStorage.setItem("category", category);
+    var pageParam = getUrlParameter('page')
+    var typeParam = getUrlParameter('type')
     if (category) {
         updateURLParameter(window.location.href, 'category', category)
     }
     else {
         removeParam("category");
+    }
+    if (pageParam) {
+        removeParam("page");
+    }
+    if (typeParam) {
+        removeParam("type");
+    }
+    renderList()
+}
+
+function changePropertyType(type) {
+    sessionStorage.setItem("type", type);
+    var pageParam = getUrlParameter('page')
+    if (type) {
+        updateURLParameter(window.location.href, 'type', type)
+    }
+    else {
+        removeParam("type");
+    }
+    if (pageParam) {
+        removeParam("page");
     }
     renderList()
 }
@@ -104,6 +137,7 @@ async function renderList() {
         if (currentPathname.toLowerCase().indexOf("/property/properties/") >= 0) {
             unfilteredList = queryset
             filtered_list = filterList(unfilteredList);
+            console.log(filtered_list);
             displayList(filtered_list);
         }
     }
@@ -112,9 +146,16 @@ async function renderList() {
 
 function filterList(list) {
     category = sessionStorage.getItem("category");
+    type = sessionStorage.getItem("type");
     if (category) {
         list = list.filter(function (item) {
-            return item.category__id === parseInt(category)
+            return item[2] === parseInt(category)
+        })
+    }
+    if (type) {
+        list = list.filter(function (item) {
+            console.log(item[3])
+            return item[3] === type
         })
     }
     return list
@@ -126,18 +167,18 @@ function displayList(filtered_list) {
         $('#dv_propertyrow').empty();
         $('.pagination').hide();
         property_list = filtered_list
-        console.log(Object.keys(property_list).length)
+        
         if (Object.keys(property_list).length === 0) {
             $("<div class='single-property--sold'><p>There are currently no properties with this tag</p></div>").appendTo('#dv_propertyrow');
         }
         else {
-            if (property_list.length > 1) {
-                records_per_page = 1
+            if (property_list.length > 30) {
+                records_per_page = 30
                 current_page = 1
                 changePage(current_page, property_list)
             }
             else {
-                singlePage(property_list)
+                singlePage(property_list, property_row)
             }
         }
     }
@@ -161,10 +202,18 @@ function nextPage() {
     }
 }
 
+function singlePage(list, properties_div) {
+    if (currentPathname.toLowerCase().indexOf("/property/properties/") >= 0) {
+        for (var i = 0; i < list.length; i++) {
+            var article = "<article class='property-link property-link--listing'><figure><a href='/property/details/" + list[i][7] + "' class='property-link__img-contain'><img alt='" + list[i][6] + "' height='1000' src='https://kajiadoacres.s3.amazonaws.com/original_images/" + list[i][8] + "' width='750'></a><figcaption class='property-link__tag'>" + list[i][3] + "</figcaption></figure ><div class='property-link__bottom'><a href='/property/details/" + list[i][7] + "'><h6 class='property-link__title'>" + list[i][6] + "</h6></a><div class='flex'><p class='property-link__house-desc'></p></div ><div class=' flex property-link__price-block'><h6 class='property-link__price'>" + list[i][5] + "<span class='price-qualifier'></span></h6><span><p class='property-link__date'>Added " + convert_date_format(list[i][4]) + "</p></span></div><div class='summary'>" + truncate_string(list[i][1]) + "</div></div><div class='flex property-link__buttons'><a class='property-link__button property-link__viewing' href='/property/details/" + list[i][7] + "?request-viewing=true'>Request Viewing</a><a class='wppf_more property-link__button' href='/property/details/" + list[i][7] + "'>Full Details</a></div></article>";
+            properties_div.innerHTML += article;
+        }
+    }
+}
+
 function changePage(page, list) {
-    console.log("!!!");
     $('.pagination').show();
-    
+
     url = window.location.href
     var param
     if (url.includes('?')) {
@@ -178,15 +227,23 @@ function changePage(page, list) {
     if (page != 1) {
         var prevBtn = "<li><a class='prev page-numbers' href=''>Previous</a></li>"
     }
-
-    if (page != numpages) {
-        var nextBtn = "<li><a class='next page-numbers' href=''>Next</a></li>"
+    else {
+        prevBtn = ""
     }
 
+    if (page != numpages) {
+        var nextBtn = "<li><a class='next page-numbers' href='" + window.location.pathname + window.location.search + "&page=" + "2" + "'>Next</a></li>"
+    }
+    else {
+        nextBtn = ""
+    }
+
+    $('.ul-pagination').remove();
     var ul = "<ul class='ul-pagination page-numbers'> " + prevBtn;
 
     // pages
     for (i = page; i <= numpages; i++) {
+
         if (param) {
             var href = window.location.pathname + window.location.search + "&page=" + i
         }
@@ -197,7 +254,7 @@ function changePage(page, list) {
         if (numpages > 4) {
             numpages = 4
             if (page == i) {
-                ul += "<li class='active' id=li" + i + "><span class='sr-only'>" + i + "</span></li>"
+                ul += "<li id=li" + i + "><span aria-current='page' class='page-numbers current'>" + i + "</span></li>"
             }
             else {
                 ul += "<li id=li" + i + "><a id='anchr_" + i + "' href='" + href + "'>" + i + "</a></li>"
@@ -205,7 +262,7 @@ function changePage(page, list) {
         }
         else {
             if (page == i) {
-                ul += "<li class='active' id=li" + i + "><span class='sr-only'>" + i + "</span></li>"
+                ul += "<li id=li" + i + "><span aria-current='page' class='page-numbers current'>" + i + "</span></li>"
             }
             else {
                 ul += "<li id=li" + i + "><a id='anchr_" + i + "' href='" + href + "'>" + i + "</a></li>"
@@ -213,8 +270,16 @@ function changePage(page, list) {
         }
     }
     ul += nextBtn + "</ul>";
+    $('.pagination').append(ul)
 
-    $('.ul-pagination').append(ul)
+    if (currentPathname.toLowerCase().indexOf("/property/properties/") >= 0) {
+        var property_div = document.getElementById("dv_propertyrow");
+        for (var i = (page - 1) * records_per_page; i < (page * records_per_page) && i < list.length; i++) {
+            var article = "<article class='property-link property-link--listing'><figure><a href='/property/details/" + list[i][7] + "' class='property-link__img-contain'><img alt='" + list[i][6] + "' height='1000' src='https://kajiadoacres.s3.amazonaws.com/original_images/" + list[i][8] + "' width='750'></a><figcaption class='property-link__tag'>" + list[i][3] + "</figcaption></figure ><div class='property-link__bottom'><a href='/property/details/" + list[i][7] + "'><h6 class='property-link__title'>" + list[i][6] + "</h6></a><div class='flex'><p class='property-link__house-desc'></p></div ><div class=' flex property-link__price-block'><h6 class='property-link__price'>" + list[i][5] + "<span class='price-qualifier'></span></h6><span><p class='property-link__date'>Added " + convert_date_format(list[i][4]) + "</p></span></div><div class='summary'>" + truncate_string(list[i][1]) + "</div></div><div class='flex property-link__buttons'><a class='property-link__button property-link__viewing' href='/property/details/" + list[i][7] + "?request-viewing=true'>Request Viewing</a><a class='wppf_more property-link__button' href='/property/details/" + list[i][7] + "'>Full Details</a></div></article>";
+            property_div.innerHTML += article;
+        }
+
+    }
 }
 
 function numPages(invoice_list, records_per_page) {
@@ -289,6 +354,22 @@ function getCookie(c_name) {
     return "";
 }
 
+function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    if (sPageURL === "") {
+        return ''
+    }
+    else {
+        for (var i = 0; i < sURLVariables.length; i++) {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) {
+                return sParameterName[1];
+            }
+        }
+    }
+}
+
 // remove parameter
 function removeParam(key) {
     sourceURL = window.location.href
@@ -310,4 +391,26 @@ function removeParam(key) {
     window.history.pushState('', document.title, rtn);
 
     return rtn;
+}
+
+function truncate_string(string) {
+    if (string.length > 150) {
+
+        return string.substring(0, 150) + "..."
+    }
+    else {
+        return string
+    }
+}
+
+const month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
+
+function convert_date_format(input_date) {
+    var date = new Date(input_date);
+    if (!isNaN(date.getTime())) {
+        monthIndex = date.getMonth()
+        monthName = month_names[monthIndex]
+        return monthName + '. ' + ('0' + date.getDate()).slice(-2) + ', ' + date.getFullYear()
+    }
 }

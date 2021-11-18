@@ -1,6 +1,8 @@
+import json
 from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.utils.regex_helper import contains
 from django.views.generic import (View, TemplateView, ListView,
                                   DetailView, CreateView,
                                   UpdateView, DeleteView)
@@ -31,8 +33,19 @@ class PropertiesView(TemplateView):
 
 
 def get_properties(request):
-    properties = Property.objects.order_by('-date').values(
-        'slug', 'title', 'price', 'date', 'property_type', 'category__id')
+    property_ids = Property.objects.order_by('-date').values('id').all()
+    property = []
+    properties = []
+    for property_id in property_ids:
+        _property = Property.objects.filter(id=property_id['id']).first()
+        main_image_title = _property.get_main_image_title()
+        # id, description, category_id, property_type, date, price, title, slug, image
+        if (' ' in main_image_title) == True:
+            main_image_title = main_image_title.replace(' ', '_')
+        property = [_property.id, _property.property_description, _property.category.id, _property.property_type,
+                    _property.date, _property.price, _property.title, _property.slug, main_image_title]
+        properties.append(property)
+
     return JsonResponse({'queryset': list(properties)})
 
 
@@ -50,7 +63,7 @@ def properties(request):
             properties = properties.filter(category__id=category_id)
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(properties, 1)
+        paginator = Paginator(properties, 30)
 
         try:
             properties = paginator.page(page)
@@ -66,7 +79,7 @@ def properties(request):
             category_id = None
 
         properties = Property.objects.filter(category__id=category_id).values(
-            'slug', 'title', 'price', 'date', 'property_type').all()
+            'slug', 'title', 'price', 'date', 'property_type', 'property_images__image__file').all()
 
         return JsonResponse({'properties': list(properties)})
 
@@ -82,6 +95,7 @@ class PropertyDetailsView(DetailView):
             *args, **kwargs)
         property = Property.objects.filter(slug=self.kwargs['slug']).first()
         ctx['property_images'] = property.all_images()
-        ctx['main_image'] = property.main_image()
-        print(ctx['main_image'])
+        main_image = property.get_main_image_title()
+        if (' ' in main_image) == True:
+            ctx['main_image'] = main_image.replace(' ', '_')
         return ctx
