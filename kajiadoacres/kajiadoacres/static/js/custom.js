@@ -21,6 +21,18 @@ $(document).ready(function () {
             sessionStorage.clear();
             changePropertyType($(this).val())
         })
+        $('#minimum_price').change(function () {
+            sessionStorage.clear();
+            changeMinPrice($(this).val())
+        })
+        $('#maximum_price').change(function () {
+            sessionStorage.clear();
+            changeMaxPrice($(this).val())
+        })
+        $('#orderby').change(function () {
+            sessionStorage.clear();
+            orderBy($(this).val())
+        })
     }
 
 
@@ -50,6 +62,8 @@ function changeCategory(category) {
     sessionStorage.setItem("category", category);
     var pageParam = getUrlParameter('page')
     var typeParam = getUrlParameter('type')
+    var minpriceParam = getUrlParameter('min_price')
+    var maxpriceParam = getUrlParameter('max_price')
     if (category) {
         updateURLParameter(window.location.href, 'category', category)
     }
@@ -62,12 +76,22 @@ function changeCategory(category) {
     if (typeParam) {
         removeParam("type");
     }
+    if (minpriceParam) {
+        removeParam("min_price");
+    }
+    if (maxpriceParam) {
+        removeParam("max_price");
+    }
+
     renderList()
 }
 
 function changePropertyType(type) {
     sessionStorage.setItem("type", type);
     var pageParam = getUrlParameter('page')
+    var minpriceParam = getUrlParameter('min_price')
+    var maxpriceParam = getUrlParameter('max_price')
+    var categoryParam = getUrlParameter('category')
     if (type) {
         updateURLParameter(window.location.href, 'type', type)
     }
@@ -76,6 +100,91 @@ function changePropertyType(type) {
     }
     if (pageParam) {
         removeParam("page");
+    }
+    if (minpriceParam) {
+        sessionStorage.setItem("min_price", minpriceParam);
+    }
+    if (maxpriceParam) {
+        sessionStorage.setItem("max_price", maxpriceParam);
+    }
+    if (categoryParam) {
+        sessionStorage.setItem("category", categoryParam);
+    }
+    renderList()
+}
+
+function changeMinPrice(min_price) {
+    sessionStorage.setItem("min_price", min_price);
+    var pageParam = getUrlParameter('page')
+    var typeParam = getUrlParameter('type')
+    var maxpriceParam = getUrlParameter('max_price')
+    var categoryParam = getUrlParameter('category')
+    if (min_price) {
+        updateURLParameter(window.location.href, 'min_price', min_price)
+    }
+    else {
+        removeParam("min_price");
+    }
+    if (pageParam) {
+        removeParam("page");
+    }
+    if (typeParam) {
+        sessionStorage.setItem("type", typeParam);
+    }
+    if (maxpriceParam) {
+        sessionStorage.setItem("max_price", maxpriceParam);
+    }
+    if (categoryParam) {
+        sessionStorage.setItem("category", categoryParam);
+    }
+    renderList()
+}
+
+function changeMaxPrice(max_price) {
+    sessionStorage.setItem("max_price", max_price);
+    var pageParam = getUrlParameter('page')
+    var typeParam = getUrlParameter('type')
+    var minpriceParam = getUrlParameter('min_price')
+    var categoryParam = getUrlParameter('category')
+    if (max_price) {
+        updateURLParameter(window.location.href, 'max_price', max_price)
+    }
+    else {
+        removeParam("max_price");
+    }
+    if (pageParam) {
+        removeParam("page");
+    }
+    if (typeParam) {
+        sessionStorage.setItem("type", typeParam);
+    }
+    if (minpriceParam) {
+        sessionStorage.setItem("min_price", minpriceParam);
+    }
+    if (categoryParam) {
+        sessionStorage.setItem("category", categoryParam);
+    }
+    renderList()
+}
+
+function orderBy(order_by) {
+    sessionStorage.setItem("order_by", order_by);
+    var pageParam = getUrlParameter('page')
+    var typeParam = getUrlParameter('type')
+    var minpriceParam = getUrlParameter('min_price')
+    var maxpriceParam = getUrlParameter('max_price')
+    var categoryParam = getUrlParameter('category')
+    if (typeParam) {
+        sessionStorage.setItem("type", typeParam);
+    }
+    if (minpriceParam) {
+        sessionStorage.setItem("min_price", minpriceParam);
+    }
+    if (categoryParam) {
+        sessionStorage.setItem("category", categoryParam);
+    }
+    if (maxpriceParam) {
+        sessionStorage.setItem("max_price", maxpriceParam);
     }
     renderList()
 }
@@ -137,7 +246,6 @@ async function renderList() {
         if (currentPathname.toLowerCase().indexOf("/property/properties/") >= 0) {
             unfilteredList = queryset
             filtered_list = filterList(unfilteredList);
-            console.log(filtered_list);
             displayList(filtered_list);
         }
     }
@@ -147,16 +255,39 @@ async function renderList() {
 function filterList(list) {
     category = sessionStorage.getItem("category");
     type = sessionStorage.getItem("type");
+    min_price = sessionStorage.getItem("min_price");
+    max_price = sessionStorage.getItem("max_price");
+    order_by = sessionStorage.getItem("order_by");
     if (category) {
         list = list.filter(function (item) {
             return item[2] === parseInt(category)
         })
     }
+
     if (type) {
         list = list.filter(function (item) {
-            console.log(item[3])
-            return item[3] === type
+            return item[3] === replace_with_space(type)
         })
+
+    }
+    if (min_price) {
+        list = list.filter(function (item) {
+
+            return item[9] >= parseInt(min_price)
+        })
+    }
+    if (max_price) {
+        list = list.filter(function (item) {
+            return item[9] <= parseInt(max_price)
+        })
+    }
+    if (order_by) {
+        if (order_by === "price-desc") {
+            list.sort((a, b) => (a[9] > b[9]) ? 1 : ((b[9] > a[9]) ? -1 : 0))
+        }
+        if (order_by === "price-asc") {
+            list.sort((a, b) => (b[9] > a[9]) ? 1 : ((a[9] > b[9]) ? -1 : 0))
+        }
     }
     return list
 }
@@ -167,9 +298,9 @@ function displayList(filtered_list) {
         $('#dv_propertyrow').empty();
         $('.pagination').hide();
         property_list = filtered_list
-        
+
         if (Object.keys(property_list).length === 0) {
-            $("<div class='single-property--sold'><p>There are currently no properties with this tag</p></div>").appendTo('#dv_propertyrow');
+            $("<div class='single-property--sold'><p>There are currently no properties with this filter</p></div>").appendTo('#dv_propertyrow');
         }
         else {
             if (property_list.length > 30) {
@@ -413,4 +544,8 @@ function convert_date_format(input_date) {
         monthName = month_names[monthIndex]
         return monthName + '. ' + ('0' + date.getDate()).slice(-2) + ', ' + date.getFullYear()
     }
+}
+
+function replace_with_space(text) {
+    return text.replace("_", " ");
 }

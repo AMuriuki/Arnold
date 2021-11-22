@@ -49,6 +49,8 @@ class Property(ClusterableModel):
     property_type = models.CharField(
         max_length=10, choices=PROPERTY_CHOICES, default="FOR_SALE")
     price = models.CharField(max_length=255, default="KES")
+    _price = models.DecimalField(
+        default=0.00, max_digits=100, decimal_places=2)
     slug = models.SlugField(unique=True, default="none")
 
     class Meta:
@@ -62,6 +64,7 @@ class Property(ClusterableModel):
         FieldPanel('date'),
         FieldPanel('property_type'),
         FieldPanel('price'),
+        FieldPanel('_price'),
         InlinePanel('property_images', label="Property images"),
     ]
 
@@ -78,7 +81,7 @@ class Property(ClusterableModel):
             return gallery_item.image
         else:
             return None
-    
+
     def get_main_image_title(self):
         gallery_item = self.property_images.last()
         if gallery_item:
