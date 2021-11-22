@@ -72,13 +72,12 @@ def properties(request):
         max_price = request.GET.get('max_price')
 
         if is_valid_queryparam(category_id):
-            properties = properties.filter(category__id=category_id)            
+            properties = properties.filter(category__id=category_id)
         if is_valid_queryparam(min_price):
             properties = properties.filter(_price__gte=min_price)
         if is_valid_queryparam(max_price):
-            properties = properties.filter(_price__lte=decimal.Decimal(max_price))
-            
-        
+            properties = properties.filter(
+                _price__lte=decimal.Decimal(max_price))
 
         page = request.GET.get('page', 1)
         paginator = Paginator(properties, 30)
@@ -116,4 +115,6 @@ class PropertyDetailsView(DetailView):
         main_image = property.get_main_image_title()
         if (' ' in main_image) == True:
             ctx['main_image'] = main_image.replace(' ', '_')
+        else:
+            ctx['main_image'] = main_image
         return ctx
