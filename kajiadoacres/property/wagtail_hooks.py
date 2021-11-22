@@ -23,7 +23,7 @@ class PropertyAdmin(ModelAdmin):
     menu_label = 'Property Listing'
     menu_icon = 'group'
     list_display = ('title', 'category', 'date', 'price',)
-    list_filter = ('title', 'category', 'date', 'price',)
+    list_filter = ('title', 'category', 'date', 'price',) 
     search_fields = ('title', 'category', 'date', 'price',)
 
 

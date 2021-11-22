@@ -1,9 +1,16 @@
+import json
+import math
+import decimal
+from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.utils.regex_helper import contains
 from django.views.generic import (View, TemplateView, ListView,
                                   DetailView, CreateView,
                                   UpdateView, DeleteView)
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from .utils import check_value, get_price_range
 
 from .models import *
 
@@ -29,21 +36,52 @@ class PropertiesView(TemplateView):
         return ctx
 
 
+def get_properties(request):
+    property_ids = Property.objects.order_by('-date').values('id').all()
+    property = []
+    properties = []
+    for property_id in property_ids:
+        _property = Property.objects.filter(id=property_id['id']).first()
+        main_image_title = _property.get_main_image_title()
+        # id, description, category_id, property_type, date, price, title, slug, image, _price
+        if (' ' in main_image_title) == True:
+            main_image_title = main_image_title.replace(' ', '_')
+        property = [_property.id, _property.property_description, _property.category.id, _property.property_type,
+                    _property.date, _property.price, _property.title, _property.slug, main_image_title, _property._price]
+        properties.append(property)
+
+    return JsonResponse({'queryset': list(properties)})
+
+
 def properties(request):
     if request.method == "GET":
         properties = Property.objects.all().order_by('-date')
         properties_choices = Property.objects.values(
             'property_type').distinct()
-        prices = Property.objects.values('property_type').distinct()
+        price_max = Property.objects.values(
+            '_price').order_by('-_price').first()
+        price_min = Property.objects.values(
+            '_price').order_by('_price').first()
+
+        prices = get_price_range(price_min['_price'], price_max['_price'])
+
         categories = Category.objects.all().order_by('-name')
 
         category_id = request.GET.get('category')
+        min_price = request.GET.get('min_price')
+        max_price = request.GET.get('max_price')
 
         if is_valid_queryparam(category_id):
-            properties = properties.filter(category__id=category_id)
+            properties = properties.filter(category__id=category_id)            
+        if is_valid_queryparam(min_price):
+            properties = properties.filter(_price__gte=min_price)
+        if is_valid_queryparam(max_price):
+            properties = properties.filter(_price__lte=decimal.Decimal(max_price))
+            
+        
 
         page = request.GET.get('page', 1)
-        paginator = Paginator(properties, 32)
+        paginator = Paginator(properties, 30)
 
         try:
             properties = paginator.page(page)
@@ -52,7 +90,18 @@ def properties(request):
         except EmptyPage:
             properties = paginator.page(paginator.num_pages)
 
-    return render(request, 'property/properties.html', {'properties': properties, 'properties_choices': properties_choices, 'prices': prices, 'categories': categories, 'category_id': category_id})
+    if request.method == "POST":
+        if request.POST.get('property_category'):
+            category_id = request.POST.get('property_category')
+        else:
+            category_id = None
+
+        properties = Property.objects.filter(category__id=category_id).values(
+            'slug', 'title', 'price', 'date', 'property_type', 'property_images__image__file').all()
+
+        return JsonResponse({'properties': list(properties)})
+
+    return render(request, 'property/properties.html', {'properties': properties, 'properties_choices': properties_choices, 'categories': categories, 'category_id': category_id, 'prices': prices, 'min_price': min_price, 'max_price': max_price})
 
 
 class PropertyDetailsView(DetailView):
@@ -64,5 +113,7 @@ class PropertyDetailsView(DetailView):
             *args, **kwargs)
         property = Property.objects.filter(slug=self.kwargs['slug']).first()
         ctx['property_images'] = property.all_images()
-        ctx['main_image'] = property.main_image()
+        main_image = property.get_main_image_title()
+        if (' ' in main_image) == True:
+            ctx['main_image'] = main_image.replace(' ', '_')
         return ctx

@@ -2878,7 +2878,8 @@ img.lazy.error, img.lazy.loaded {
     background: #06090c;
     opacity: .5;
     transition: .6s;
-    z-index: 0
+    z-index: 0;
+    display: none;
 }
 
 .overlay--body {

@@ -426,7 +426,7 @@ h6 {
 .container {
     width: 90%;
     margin: 0 auto;
-    max-width: 1160px
+    max-width: 90%;
 }
 
 .container--full-width {
@@ -2875,7 +2875,8 @@ img.lazy.error, img.lazy.loaded {
     background: #06090c;
     opacity: .5;
     transition: .6s;
-    z-index: 0
+    z-index: 0;
+    display: none !important;
 }
 
 .overlay--body {
@@ -5762,7 +5763,7 @@ img.lazy.error, img.lazy.loaded {
 }
 
 .pagination ul li:last-child, .pagination ul li:nth-last-child(2) {
-    margin-right: 0
+    margin-right: 42px
 }
 
 .pagination ul.current {
@@ -6894,7 +6895,7 @@ img.lazy.error, img.lazy.loaded {
     height: 40px;
     text-indent: 5px;
     padding: 0;
-    background-color: #f6f6f6;
+    background-color: transparent;
     padding: 0 10px
 }
 

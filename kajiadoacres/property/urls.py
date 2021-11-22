@@ -6,5 +6,6 @@ urlpatterns = [
     path('', views.PropertyView.as_view(), name='property'),
     path('properties/', views.properties, name='properties'),
     path('details/<slug>', views.PropertyDetailsView.as_view(),
-         name='property_details')
+         name='property_details'),
+    path('get_properties', views.get_properties, name='get_properties')
 ]

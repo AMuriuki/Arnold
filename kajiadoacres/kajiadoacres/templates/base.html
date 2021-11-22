@@ -32,7 +32,7 @@
     <link rel='stylesheet' id='propertyhive-general-css' href="{% static 'css/propertyhive.css' %}" type='text/css'
         media='all' />
     <link rel='stylesheet' id='parent-style-css' href="{% static 'css/style.css' %}" type='text/css' media='all' />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
 
     <script type='text/javascript' src="{% static 'js/jquery/jquery-migrate.mind.js' %}"
         id='jquery-migrate-js'></script>
@@ -93,7 +93,7 @@
         id='propertyhive_make_enquiry-js'></script>
     <script type='text/javascript' src="{% static 'js/bundle.js' %}" id='script-js'></script>
     <script type='text/javascript' src="{% static 'js/wp-embed.mine.js' %}" id='wp-embed-js'></script>
-    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/custom.js' %}?v0.1"></script>
 
     {% block extra_js %}
     {# Override this in templates to add extra javascript #}
