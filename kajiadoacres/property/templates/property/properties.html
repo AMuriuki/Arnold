@@ -43,7 +43,7 @@
                         <div class="control control-department">
                             <label for="category">Property Category</label>
                             <select name="category" id="category" class="select2">
-                                <option value="#">Select Category</option>
+                                <option value="">Select Category</option>
                                 {% for category in categories %}
                                 <option value="{{category.id}}" {% ifequal category.id|stringformat:"s" category_id %}
                                     selected {% endifequal %}>{{category.name}}</option>
@@ -54,7 +54,7 @@
                         <div class="control control-for_sale_or_rent">
                             <label for="for_sale_or_rent">For Sale/To Rent</label>
                             <select name="for_sale_or_rent" id="for_sale_or_rent" class="select2" data-blank-option="">
-                                <option value="#" selected='selected'>Select for sale/to rent</option>
+                                <option value="" selected='selected'>Select for sale/to rent</option>
                                 <option value="FOR_SALE">FOR SALE</option>
                                 <option value="FOR_RENT">FOR RENT</option>
 
@@ -64,7 +64,7 @@
                         <div class="control control-minimum_price">
                             <label for="minimum_price">Min Price</label>
                             <select name="minimum_price" id="minimum_price" class="select2" data-blank-option="">
-                                <option value="#" selected='selected'>Select Min Price</option>
+                                <option value="" selected='selected'>Select Min Price</option>
                                 {% for price in prices %}
                                 <option value="{{price}}" {% ifequal price|stringformat:"s" min_price %}
                                 selected {% endifequal %}>Ksh. {{price|intcomma}}</option>
@@ -75,7 +75,7 @@
                         <div class="control control-maximum_price">
                             <label for="maximum_price">Max Price</label>
                             <select name="maximum_price" id="maximum_price" class="select2" data-blank-option="">
-                                <option value="#" selected='selected'>Select Max Price</option>
+                                <option value="" selected='selected'>Select Max Price</option>
                                 {% for price in prices %}
                                 <option value="{{price}}" {% ifequal price|stringformat:"s" max_price %}
                                 selected {% endifequal %}>Ksh. {{price|intcomma}}</option>
