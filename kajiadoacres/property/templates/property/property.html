@@ -43,6 +43,11 @@
             font-size: 16px;
         }
     }
+
+    .swiper-slide {
+        height: 300px !important;
+        width: 300px;
+    }
 </style>
 {% include "header.html" %}
 <main>
@@ -216,9 +221,21 @@
 
                             </script>
                         </div>
-                        <div id="tab-4" class="tab-content">
-                            <!-- <iframe src="//www.youtube.com/embed/ooHS_wn2n9E" class="virtualTour" frameborder="0"
-                                allow="autoplay; fullscreen" allowfullscreen=""></iframe> -->
+                        <div id="tab-4" class="tab-content" style="overflow: auto; padding: 40px 0px !important;">
+                            <main class="main">
+                                <div class="container" style="padding-left: 0px !important;">
+                                    <div class="swiper-container">
+                                        <div class="swiper-wrapper">
+                                            {% for link in video_links %}
+                                            <div class="swiper-slide">
+                                                <iframe id="player0" width="100%" height="100%" src="{{link}}"
+                                                    frameborder="0" allowfullscreen iframe-video></iframe>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </main>
                         </div>
                     </div>
                 </div>

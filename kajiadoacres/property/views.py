@@ -112,9 +112,19 @@ class PropertyDetailsView(DetailView):
             *args, **kwargs)
         property = Property.objects.filter(slug=self.kwargs['slug']).first()
         ctx['property_images'] = property.all_images()
+        ctx['video_links'] = get_propertyvideos(property.id)
+        print(property.id)
         main_image = property.get_main_image_title()
         if (' ' in main_image) == True:
             ctx['main_image'] = main_image.replace(' ', '_')
         else:
             ctx['main_image'] = main_image
         return ctx
+
+
+def get_propertyvideos(property_id):
+    link_items = VideoLink.objects.filter(page_id=property_id).all()
+    links = []
+    for item in link_items:
+        links.append(item.link)
+    return links
