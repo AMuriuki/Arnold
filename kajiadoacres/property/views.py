@@ -132,4 +132,5 @@ def get_propertyvideos(property_id):
 
 def get_map(property_id):
     item = MapLink.objects.filter(page_id=property_id).first()
-    return item.map
+    if item:
+        return item.map
