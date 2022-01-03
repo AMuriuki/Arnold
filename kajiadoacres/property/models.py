@@ -67,6 +67,7 @@ class Property(ClusterableModel):
         FieldPanel('_price'),
         InlinePanel('property_images', label="Property images"),
         InlinePanel('video_links', label="Property videos"),
+        InlinePanel('map_link', label="Property Map"),
     ]
 
     def __str__(self):
@@ -118,8 +119,18 @@ class PropertyGalleryImage(Orderable):
 class VideoLink(models.Model):
     page = ParentalKey(Property, on_delete=models.PROTECT,
                        related_name='video_links')
-    link = models.TextField(null=True)
+    video = models.TextField(null=True)
 
     panels = [
-        FieldPanel('link')
+        FieldPanel('video')
+    ]
+
+
+class MapLink(models.Model):
+    page = ParentalKey(Property, on_delete=models.PROTECT,
+                       related_name='map_link')
+    map = models.TextField(null=True)
+
+    panels = [
+        FieldPanel('map')
     ]
