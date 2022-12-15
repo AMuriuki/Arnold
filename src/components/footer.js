@@ -40,35 +40,8 @@ const StyledSocialLinks = styled.div`
   }
 `;
 
-const StyledCredit = styled.div`
-  color: var(--light-slate);
-  font-family: var(--font-mono);
-  font-size: var(--fz-xxs);
-  line-height: 1;
-
-  a {
-    padding: 10px;
-  }
-
-  .github-stats {
-    margin-top: 10px;
-
-    & > span {
-      display: inline-flex;
-      align-items: center;
-      margin: 0 7px;
-    }
-    svg {
-      display: inline-block;
-      margin-right: 5px;
-      width: 14px;
-      height: 14px;
-    }
-  }
-`;
-
 const Footer = () => {
-  const [githubInfo, setGitHubInfo] = useState({
+  const [setGitHubInfo] = useState({
     stars: null,
     forks: null,
   });
@@ -103,25 +76,6 @@ const Footer = () => {
             ))}
         </ul>
       </StyledSocialLinks>
-
-      <StyledCredit tabindex="-1">
-        <a href="https://github.com/AMuriuki/Arnold">
-          {/* <div>Designed &amp; Built by Brittany Chiang</div> */}
-
-          {githubInfo.stars && githubInfo.forks && (
-            <div className="github-stats">
-              <span>
-                <Icon name="Star" />
-                <span>{githubInfo.stars.toLocaleString()}</span>
-              </span>
-              <span>
-                <Icon name="Fork" />
-                <span>{githubInfo.forks.toLocaleString()}</span>
-              </span>
-            </div>
-          )}
-        </a>
-      </StyledCredit>
     </StyledFooter>
   );
 };
