@@ -7,7 +7,7 @@ module.exports = {
       'Arnold Nderitu is a software engineer who specializes in building exceptional digital experiences.',
     siteUrl: 'https://arnoldnderitu.com', // No trailing slash allowed!
     image: '/og.png', // Path to your image you placed in the 'static' folder
-    twitterUsername: '@bchiang7',
+    twitterUsername: '@Arnold_Nderitu',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
