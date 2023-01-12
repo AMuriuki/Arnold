@@ -2,7 +2,7 @@
 date: '2'
 title: 'Kajiado Acres'
 cover: './demo.png'
-external: 'https://kajiadoacres.com/'
+external: 'https://kajiadoacres.co.ke/'
 tech:
   - Python
   - Django
