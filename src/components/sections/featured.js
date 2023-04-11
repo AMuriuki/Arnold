@@ -345,7 +345,7 @@ const Featured = () => {
   }, []);
 
   return (
-    <section id="projects">
+    <section>
       <h2 className="numbered-heading" ref={revealTitle}>
         Some Things I’ve Built
       </h2>

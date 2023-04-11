@@ -136,15 +136,14 @@ const About = () => {
           <div>
             <p>
               Hello! My name is Arnold and I enjoy creating things using code. My interest in
-              programming started back in 2017 when I tried to build a calculator!
+              programming started back in 2017!
             </p>
 
             <p>
               Fast-forward to today, and I’ve had the privilege of working in{' '}
-              <a href="https://www2.deloitte.com/">a multi-national company</a>,{' '}
-              <a href="https://techfactory.ltd/">a start-up</a> and even {' '}
-              <a href="https://halfprice.co.ke"> co-founded one.</a> My main focus these days
-              is building seamless digital experiences in Supply Chain Financing at{' '}
+              <a href="https://www2.deloitte.com/">a multi-national company</a> and{' '}
+              <a href="https://techfactory.ltd/">a start-up</a> I am currently building seamless
+              digital experiences in Supply Chain Financing at{' '}
               <a href="https://factsafrica.com/">FACTs Africa</a>.
             </p>
 
