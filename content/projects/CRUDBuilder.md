@@ -1,8 +1,8 @@
 ---
 date: '2022-09-21'
 title: 'JS API CRUD Builder'
-github: 'https://github.com/AMuriuki/flask-boilerplate'
-external: ''
+github: 'https://github.com/AMuriuki/crud-builder'
+external: 'https://github.com/AMuriuki/crud-builder'
 tech:
   - JavaScript
 ios: ''

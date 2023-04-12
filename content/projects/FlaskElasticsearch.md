@@ -2,7 +2,7 @@
 date: '2022-12-02'
 title: 'Flask Elasticsearch'
 github: 'https://github.com/AMuriuki/flask-elasticsearch'
-external: ''
+external: 'https://github.com/AMuriuki/flask-elasticsearch'
 tech:
   - Python
   - Flask

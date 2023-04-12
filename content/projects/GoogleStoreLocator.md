@@ -1,8 +1,8 @@
 ---
 date: '2022-09-08'
 title: 'Google Maps Store Locator'
-github: 'https://github.com/AMuriuki/flask-boilerplate'
-external: ''
+github: 'https://github.com/AMuriuki/google-maps-store-locator'
+external: 'https://github.com/AMuriuki/google-maps-store-locator'
 tech:
   - Python
   - JavaScript

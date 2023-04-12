@@ -136,7 +136,7 @@ const About = () => {
           <div>
             <p>
               Hello! My name is Arnold and I enjoy creating things using code. My interest in
-              programming started back in 2017!
+              programming started back in 2014!
             </p>
 
             <p>
