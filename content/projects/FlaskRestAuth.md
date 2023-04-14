@@ -1,6 +1,6 @@
 ---
 date: '2020-02-10'
-title: 'Flask Live Video Streaming'
+title: 'Flask RESTful Authentication'
 github: 'https://github.com/AMuriuki/flask-video-streaming'
 external: 'https://github.com/AMuriuki/flask-video-streaming'
 tech:
@@ -10,4 +10,4 @@ android: ''
 showInProjects: true
 ---
 
-A live video streaming server built in Flask
+A simple, yet secure way to protect a Flask based API with password or token based authentication.

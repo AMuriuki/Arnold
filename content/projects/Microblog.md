@@ -1,5 +1,5 @@
 ---
-date: '2018-01-06'
+date: '2019-10-22'
 title: 'Microblog'
 github: 'https://github.com/AMuriuki/microblog'
 external: 'https://github.com/AMuriuki/microblog'
